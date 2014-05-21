@@ -4,11 +4,16 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
+import javax.inject.Named;
+import javax.inject.Singleton;
+
 import ppa.marc.common.UnimarcConstants;
 import ppa.marc.domain.Field;
 import ppa.marc.domain.Record;
 import ppa.marc.domain.SubField;
 
+@Named("directoryWriter")
+@Singleton
 public class UnimarcDirectoryWriter implements DirectoryWriter {
 
 	public void writeDirectoryEntries(OutputStream outputStream, Record record) throws IOException {

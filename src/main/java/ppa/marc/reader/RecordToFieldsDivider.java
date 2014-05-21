@@ -5,8 +5,12 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.inject.Named;
+import javax.inject.Singleton;
+
+@Named
+@Singleton
 public class RecordToFieldsDivider {
-	// TODO refactor patterns to common class (see BaseFieldExtractor)
 	private static final Pattern FIELD_PATTERN = Pattern.compile("\\d\\d\\d(|(\\.[\\d_]{2}))(\\s+.+|\\s*)");
 	private static final Pattern CONTINUES_FROM_PREVIOUS_LINE_FIELD_PATTERN = Pattern.compile("\\s*\\|\\p{Alnum}.+");
 	

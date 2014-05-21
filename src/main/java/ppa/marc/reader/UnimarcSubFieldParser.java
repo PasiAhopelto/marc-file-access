@@ -1,7 +1,12 @@
 package ppa.marc.reader;
 
+import javax.inject.Named;
+import javax.inject.Singleton;
+
 import ppa.marc.domain.SubField;
 
+@Named("subFieldParser")
+@Singleton
 public class UnimarcSubFieldParser implements SubFieldParser {
 
 	public SubField parse(String subFieldAsString, boolean isZeroZeroField) {

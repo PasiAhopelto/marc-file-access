@@ -1,8 +1,14 @@
 package ppa.marc.reader;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
+
 import ppa.marc.domain.Field;
 import ppa.marc.domain.Record;
 
+@Named
+@Singleton
 public class TextRecordConverter implements RecordConverter {
 	private final RecordToFieldsDivider recordToFieldsDivider;
 	private final BaseFieldExtractor fieldIdAndIndicatorExtractor;
@@ -10,6 +16,7 @@ public class TextRecordConverter implements RecordConverter {
 	private final FromFieldIdentityExtractor recordNameExtractor;
 	private final FromFieldIdentityExtractor recordLabelExtractor;
 
+	@Inject
 	public TextRecordConverter(RecordToFieldsDivider recordToFieldsDivider, BaseFieldExtractor fieldIdAndIndicatorExtractor, SubFieldExtractor subFieldExtractor, FromFieldIdentityExtractor recordNameExtractor, FromFieldIdentityExtractor recordLabelExtractor) {
 		this.recordToFieldsDivider = recordToFieldsDivider;
 		this.fieldIdAndIndicatorExtractor = fieldIdAndIndicatorExtractor;

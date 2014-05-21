@@ -3,11 +3,16 @@ package ppa.marc.reader;
 import java.util.Collection;
 import java.util.List;
 
+import javax.inject.Named;
+import javax.inject.Singleton;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
 
 import ppa.marc.domain.Field;
 
+@Named
+@Singleton
 public class FromFieldIdentityExtractor {
 
 	private static int ID_FIELD_ID = 1;

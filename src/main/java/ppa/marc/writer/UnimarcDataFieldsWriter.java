@@ -3,11 +3,16 @@ package ppa.marc.writer;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import javax.inject.Named;
+import javax.inject.Singleton;
+
 import ppa.marc.common.UnimarcConstants;
 import ppa.marc.domain.Field;
 import ppa.marc.domain.Record;
 import ppa.marc.domain.SubField;
 
+@Named("dataFieldsWriter")
+@Singleton
 public class UnimarcDataFieldsWriter implements DataFieldsWriter {
 
 	public void writeDataFields(OutputStream outputStream, Record record) throws IOException {

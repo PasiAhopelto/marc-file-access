@@ -7,15 +7,22 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
+
 import ppa.marc.RecordReader;
 import ppa.marc.domain.Record;
 
+@Named
+@Singleton
 public class TextFileReader implements RecordReader {
 
 	private final RecordConverter recordConverter;
 	private final SpecialLineChecker commentLineChecker;
 
-	public TextFileReader(RecordConverter recordConverter, SpecialLineChecker commentLineChecker) {
+	@Inject
+	public TextFileReader(@Named("textRecordConverter") RecordConverter recordConverter, SpecialLineChecker commentLineChecker) {
 		this.recordConverter = recordConverter;
 		this.commentLineChecker = commentLineChecker;
 	}

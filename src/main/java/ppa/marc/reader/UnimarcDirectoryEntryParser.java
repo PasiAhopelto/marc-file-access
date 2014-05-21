@@ -3,6 +3,11 @@ package ppa.marc.reader;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Named;
+import javax.inject.Singleton;
+
+@Named("directoryEntryParser")
+@Singleton
 public class UnimarcDirectoryEntryParser implements DirectoryEntryParser {
 
 	private static final int DIRECTORY_ENTRY_LENGTH = 12;

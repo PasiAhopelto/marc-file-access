@@ -2,8 +2,14 @@ package ppa.marc.reader;
 
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
+
 import ppa.marc.domain.Record;
 
+@Named
+@Singleton
 public class UnimarcRecordConverter implements RecordConverter {
 
 	private final RecordSplitter recordSplitter;
@@ -12,6 +18,7 @@ public class UnimarcRecordConverter implements RecordConverter {
 	private final FieldParser fieldParser;
 	private final IdentityExtractor identityExtractor;
 
+	@Inject
 	public UnimarcRecordConverter(RecordSplitter recordSplitter, DirectoryEntryParser directoryEntryParser, VariableDataSplitter variableDataSplitter, FieldParser fieldParser, IdentityExtractor identityExtractor) {
 		this.recordSplitter = recordSplitter;
 		this.directoryEntryParser = directoryEntryParser;

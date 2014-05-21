@@ -1,14 +1,21 @@
 package ppa.marc.reader;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
+
 import org.apache.commons.lang.StringUtils;
 
 import ppa.marc.common.UnimarcConstants;
 import ppa.marc.domain.Field;
 
+@Named("fieldParser")
+@Singleton
 public class UnimarcFieldParser implements FieldParser {
 
 	private final SubFieldParser subFieldParser;
 
+	@Inject
 	public UnimarcFieldParser(SubFieldParser subFieldParser) {
 		this.subFieldParser = subFieldParser;
 	}

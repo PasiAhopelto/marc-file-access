@@ -3,8 +3,13 @@ package ppa.marc.reader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.inject.Named;
+import javax.inject.Singleton;
+
 import ppa.marc.domain.Field;
 
+@Named
+@Singleton
 public class BaseFieldExtractor {
 
 	private static final String IDENTIFIER = "(\\d{3,3})";

@@ -1,9 +1,14 @@
 package ppa.marc.reader;
 
+import javax.inject.Named;
+import javax.inject.Singleton;
+
 import org.apache.commons.lang.StringUtils;
 
 import ppa.marc.common.UnimarcConstants;
 
+@Named("recordSplitter")
+@Singleton
 public class UnimarcRecordSplitter implements RecordSplitter {
 
 	public String extractDirectoryBlock(String recordAsString) {

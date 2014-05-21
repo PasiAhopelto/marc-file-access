@@ -5,15 +5,22 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
+
 import ppa.marc.RecordReader;
 import ppa.marc.common.UnimarcConstants;
 import ppa.marc.domain.Record;
 
+@Named("marcFileReader")
+@Singleton
 public class UnimarcFileReader implements RecordReader {
 
 	private final RecordConverter recordConverter;
 
-	public UnimarcFileReader(RecordConverter recordConverter) {
+	@Inject
+	public UnimarcFileReader(@Named("unimarcRecordConverter") RecordConverter recordConverter) {
 		this.recordConverter = recordConverter;
 	}
 
