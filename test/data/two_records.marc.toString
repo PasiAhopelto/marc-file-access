@@ -1,0 +1,103 @@
+001    12439641
+005    20060619093319.0
+008    010612s2002    caua     b    001 0 eng  
+906.__ |a 7
+       |b rix
+       |c orignew
+       |d 1
+       |e ocip
+       |f 20
+       |g y-gencatlg
+925.0_ |a acquire
+       |b 2 shelf copies
+       |x policy default
+955.__ |a to RCCD pc23 06-12-01; yk11 06-12-01; yk06 06-13-01; yk10 to Dewey 06-13-01; aa05 06-13-01
+       |a ps07 2002-06-26 2 copies rec'd, to CIP ver.
+       |f lg12 2002-06-28; CIP ver. HLCD lg12 06-28-2002
+       |e lg15 2002-07-01 to BCCD
+010.__ |a   2001042114
+020.__ |a 1893554244 (cloth)
+020.__ |a 1893554279 (pbk.)
+040.__ |a DLC
+       |c DLC
+       |d DLC
+042.__ |a pcc
+043.__ |a a-vt---
+       |a n-us---
+050.00 |a DS558.8
+       |b .M532 2001
+082.00 |a 959.704/348
+       |2 21
+100.1_ |a Michel, Marshall L.,
+       |c III,
+       |d 1942-
+245.14 |a The eleven days of Christmas :
+       |b America's last Vietnam battle /
+       |c Marshall L. Michel III.
+246.3_ |a 11 days of Christmas
+250.__ |a 1st ed.
+260.__ |a San Francisco, Calif. :
+       |b Encounter Books,
+       |c c2002.
+300.__ |a viii, 325 p. :
+       |b ill. ;
+       |c 24 cm.
+504.__ |a Includes bibliographical references and index.
+650._0 |a Vietnam War, 1961-1975
+       |x Aerial operations, American.
+651._0 |a Hanoi (Vietnam)
+       |x History
+       |y Bombardment, 1972.
+651._0 |a Haiphong (Vietnam)
+       |x History
+       |y Bombardment, 1972.
+610.10 |a United States.
+       |b Air Force
+       |x History
+       |y Vietnam War, 1961-1975.
+
+001    2123773
+906.__ |a 7
+       |b cbc
+       |c orignew
+       |d 1
+       |e ocip
+       |f 19
+       |g y-gencatlg
+955.__ |a pc19 to ja00 03-04-97; yk11 03-06-97; yk02 03-06-97; yk10 03-06-97; CIP ver. yj05 08-21-97
+005    20060414184822.0
+008    970304s1997    mdua     b    001 0 eng  
+035.__ |9 (DLC)   97009279
+010.__ |a    97009279 
+020.__ |a 1557505853 (alk. paper)
+040.__ |a DLC
+       |c DLC
+       |d DLC
+043.__ |a a-vt---
+050.00 |a DS558.8
+       |b .M53 1997
+082.00 |a 959.704/3
+       |2 21
+100.1_ |a Michel, Marshall L.,
+       |c III,
+       |d 1942-
+245.10 |a Clashes :
+       |b air combat over North Vietnam, 1965-1972 /
+       |c Marshall L. Michel III.
+260.__ |a Annapolis, Md :
+       |b Naval Institute Press,
+       |c c1997.
+300.__ |a vii, 340 p. :
+       |b ill. ;
+       |c 25 cm.
+504.__ |a Includes bibliographical references (p. [223]-228) and index.
+650._0 |a Vietnam War, 1961-1975
+       |x Aerial operations.
+650._0 |a Fighter planes
+       |z Vietnam.
+920.__ |a ** LC HAS REQ'D # OF SHELF COPIES **
+991.__ |b c-GenColl
+       |h DS558.8
+       |i .M53 1997
+       |t Copy 1
+       |w BOOKS

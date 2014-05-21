@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:util="http://www.springframework.org/schema/util" 
+       xmlns:aop="http://www.springframework.org/schema/aop" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.0.xsd 
+                           http://www.springframework.org/schema/util 
+                           http://www.springframework.org/schema/util/spring-util-2.0.xsd 
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+  <bean id="textFileReader" class="ppa.marc.reader.TextFileReader">
+    <constructor-arg ref="textRecordConverter"/>
+    <constructor-arg ref="specialLineChecker"/>
+  </bean>
+
+  <bean id="textRecordConverter" class="ppa.marc.reader.TextRecordConverter">
+    <constructor-arg ref="recordToFieldsDivider"/>
+    <constructor-arg ref="baseFieldExtractor"/>
+    <constructor-arg ref="subFieldExtractor"/>
+    <constructor-arg ref="fromFieldIdentityExtractor"/>  
+    <constructor-arg ref="fromFieldIdentityExtractor"/> 
+  </bean>
+
+  <bean id="subFieldExtractor" class="ppa.marc.reader.SubFieldExtractor"/>
+  <bean id="fromFieldIdentityExtractor" class="ppa.marc.reader.FromFieldIdentityExtractor"/>
+  <bean id="specialLineChecker" class="ppa.marc.reader.SpecialLineChecker"/>
+  <bean id="recordToFieldsDivider" class="ppa.marc.reader.RecordToFieldsDivider"/>
+  <bean id="baseFieldExtractor" class="ppa.marc.reader.BaseFieldExtractor"/>
+
+  <bean id="marcFileReader" class="ppa.marc.reader.UnimarcFileReader">
+  	<constructor-arg ref="unimarcRecordConverter"/>
+  </bean>
+
+  <bean id="unimarcRecordConverter" class="ppa.marc.reader.UnimarcRecordConverter">
+  	<constructor-arg ref="recordSplitter"/>
+  	<constructor-arg ref="directoryEntryParser"/>
+  	<constructor-arg ref="variableDataSplitter"/>
+  	<constructor-arg ref="fieldParser"/>
+  	<constructor-arg ref="identityExtractor"/>
+  </bean>
+
+  <bean id="recordSplitter" class="ppa.marc.reader.UnimarcRecordSplitter"/>
+
+  <bean id="directoryEntryParser" class="ppa.marc.reader.UnimarcDirectoryEntryParser"/>
+
+  <bean id="variableDataSplitter" class="ppa.marc.reader.UnimarcVariableDataSplitter"/>
+
+  <bean id="fieldParser" class="ppa.marc.reader.UnimarcFieldParser">
+  	<constructor-arg ref="subFieldParser"/>
+  </bean>
+
+  <bean id="identityExtractor" class="ppa.marc.reader.UnimarcIdentityExtractor"/>
+
+  <bean id="subFieldParser" class="ppa.marc.reader.UnimarcSubFieldParser"/>
+
+</beans>

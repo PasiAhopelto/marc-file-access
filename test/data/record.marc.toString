@@ -1,0 +1,51 @@
+001    3073077
+005    19980910113810.7
+008    971006s1997    enka     b    001 0 eng  
+035.__ |9 (DLC)   97044287
+906.__ |a 7
+       |b cbc
+       |c orignew
+       |d 1
+       |e ocip
+       |f 19
+       |g y-gencatlg
+955.__ |a pc20 to sa00 10-06-97; to ASCD 10-07-97; jd20 10-08-97; jd05 10-08-97; je05 to DDC 10-09-97; CIP ver. pv08 04-30-98
+010.__ |a    97044287 
+020.__ |a 0860786609 (hc : alk. paper)
+040.__ |a DLC
+       |c DLC
+       |d DLC
+043.__ |a e------
+       |a e-ne---
+050.00 |a VM299.7.N4
+       |b S48 1997
+082.00 |a 623.8/2/09492
+       |2 21
+245.00 |a Ships and shipping in the North Sea and Atlantic, 1400-1800 /
+       |c [edited by] Richard W. Unger.
+260.__ |a Aldershot ;
+       |a Brookfield, Vt., USA :
+       |b Ashgate,
+       |c c1997.
+300.__ |a 1 v. (various pagings) :
+       |b ill. ;
+       |c 23 cm.
+490.1_ |a Variorum collected studies series ;
+       |v CS601
+504.__ |a Includes bibliographical references and index.
+650._0 |a Shipbuilding
+       |z Netherlands
+       |x History.
+650._0 |a Navigation
+       |z Europe
+       |x History.
+700.1_ |a Unger, Richard W.
+830._0 |a Collected studies ;
+       |v CS601.
+920.__ |a ** LC HAS REQ'D # OF SHELF COPIES **
+991.__ |b c-GenColl
+       |h VM299.7.N4
+       |i S48 1997
+       |p 00058598628
+       |t Copy 1
+       |w BOOKS

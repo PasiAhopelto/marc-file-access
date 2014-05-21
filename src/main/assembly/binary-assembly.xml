@@ -1,0 +1,29 @@
+<assembly>
+  <id>bin</id>
+  <formats>
+    <format>tar.gz</format>
+  </formats>
+  <files>
+    <file>
+      <source>src/main/resources/META-INF/LICENSE</source>
+      <outputDirectory>/</outputDirectory>
+    </file>
+    <file>
+      <source>README.md</source>
+      <outputDirectory>/</outputDirectory>
+    </file>
+  </files>
+  <fileSets>
+    <fileSet>
+      <directory>target</directory>
+      <includes>
+        <include>marc-file-access-*.jar</include>
+      </includes>
+      <outputDirectory>/</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>target/site/apidocs</directory>
+      <outputDirectory>apidocs/</outputDirectory>
+    </fileSet>
+  </fileSets>
+</assembly>

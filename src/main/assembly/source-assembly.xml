@@ -1,0 +1,33 @@
+<assembly>
+  <id>src</id>
+  <formats>
+    <format>tar.gz</format>
+  </formats>
+  <files>
+    <file>
+      <source>src/main/resources/META-INF/LICENSE</source>
+      <outputDirectory>/</outputDirectory>
+    </file>
+    <file>
+      <source>README.md</source>
+      <outputDirectory>/</outputDirectory>
+    </file>
+  </files>
+  <fileSets>
+    <fileSet>
+      <directory>src</directory>
+      <outputDirectory>src</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>test</directory>
+      <outputDirectory>test</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory></directory>
+      <includes>
+        <include>*.xml</include>
+      </includes>
+      <outputDirectory>/</outputDirectory>
+    </fileSet>
+  </fileSets>
+</assembly>

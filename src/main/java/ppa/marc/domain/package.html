@@ -1,0 +1,24 @@
+<body>
+
+This package provides UNIMARC data model the library.  UNIMARC records are
+modelled as <code>Record</code>s that contain <code>Field</code>s.  The
+concrete values of the fields are in <code>SubField</code>s contained by the
+<code>Field</code>s.  
+<p>
+
+The following example illustrates the classes's relation to UNIMARC format:
+
+<pre>
+001.__ 0710602383
+010.__ |a 0-7106-0238-3
+       |b sid.
+</pre>
+
+Corresponding <code>Record</code> would contain two <code>Field</code>s with
+identifiers 001 and 010.  Field 001 would contain single identifierless
+<code>SubField</code> with value 0710602383.  Field 010 would contain two
+<code>SubField</code>s with identifiers a and b, and values "0-7106-0238-3" and
+"sid." respectively.  In both fields indicators (shown as underscores above)
+would be undefined.
+
+</body>
