@@ -1,0 +1,8 @@
+- Add record.addField()
+- Add field.addSubField()
+- Add record.hashCode()
+- Add field.hashCode()
+- Make field, record and subfield serializable
+- Move RecordAccessLibrary to a different package
+- Move RAL to test package
+- Add context class which replaces ClassPathContext use
