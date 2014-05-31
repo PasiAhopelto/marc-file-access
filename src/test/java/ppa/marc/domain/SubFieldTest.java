@@ -1,5 +1,11 @@
 package ppa.marc.domain;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import junit.framework.TestCase;
 
 public class SubFieldTest extends TestCase {
@@ -32,13 +38,31 @@ public class SubFieldTest extends TestCase {
 	}
 
 	public void testFieldsAreSettable() throws Exception {
-		subField.setId('x');
-		subField.setValue("atad");
+		setSubFieldValues('x', "atad");
 		assertEquals(new SubField('x', "atad"), subField);
 	}
 
 	public void testIdIsSetToUnassignedIfUnset() throws Exception {
 		assertTrue(Character.UNASSIGNED == new SubField("value").getId());
+	}
+	
+	public void testIsSerializable() throws Exception {
+		setSubFieldValues('a', "value");
+		byte[] serialized = serializeSubfield();
+		assertEquals(subField, (SubField) new ObjectInputStream(new ByteArrayInputStream(serialized)).readObject());
+	}
+
+	private byte[] serializeSubfield() throws IOException {
+		ByteArrayOutputStream output = new ByteArrayOutputStream();
+		ObjectOutputStream objectOutputStream = new ObjectOutputStream(output);
+		objectOutputStream.writeObject(subField);
+		objectOutputStream.close();
+		return output.toByteArray();
+	}
+
+	private void setSubFieldValues(char identifier, String value) {
+		subField.setId(identifier);
+		subField.setValue(value);
 	}
 	
 }

@@ -6,3 +6,5 @@
 - Move RecordAccessLibrary to a different package
 - Move RAL to test package
 - Add context class which replaces ClassPathContext use
+- use meanbean
+

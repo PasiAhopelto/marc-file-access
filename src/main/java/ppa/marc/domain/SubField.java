@@ -1,5 +1,7 @@
 package ppa.marc.domain;
 
+import java.io.Serializable;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
@@ -7,8 +9,10 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * UNIMARC subfield for bibliographic data.
  * Subfields contain actual values stored into fields.
  */
-public class SubField {
+public class SubField implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	String value;
 	char id;
 
