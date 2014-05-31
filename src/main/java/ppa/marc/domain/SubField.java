@@ -6,8 +6,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * UNIMARC subfield for bibliographic data.
- * Subfields contain actual values stored into fields.
+ * UNIMARC subfield for bibliographic data. Subfields contain concrete values stored into fields.
  */
 public class SubField implements Serializable {
 
@@ -23,9 +22,8 @@ public class SubField implements Serializable {
 	}
 	
 	/**
-	 * Constructor for a subfield with an identifier.
-	 * @param id Subfield's identifier, for example 'a'.  Id does not need to
-	 * be unique, if the subfield is repeatable.
+	 * Constructor for a subfield with an identifier, that is for subfields that are commonly used with data fields.
+	 * @param id Subfield's identifier, for example 'a'. Id does not need to be unique, if the subfield is repeatable.
 	 * @param value Subfield's value as string.
 	 */
 	public SubField(char id, String value) {
@@ -43,7 +41,6 @@ public class SubField implements Serializable {
 	}
 
 	/**
-	 * Getter for subfield's value.
 	 * @return Subfield's value.
 	 */
 	public String getValue() {
@@ -51,7 +48,6 @@ public class SubField implements Serializable {
 	}
 
 	/**
-	 * Getter for subfield's identifier.
 	 * @return Identifier, or Character.UNASSIGNED if the identifier isn't defined.
 	 */
 	public Character getId() {
@@ -75,8 +71,7 @@ public class SubField implements Serializable {
 
 	/**
 	 * Returns this subfield as a string.
-	 * @return Value in case of control field's subfield, otherwise the syntax is for 
-	 * <code>|a value</code> where a is subfield's identifier. 
+	 * @return Value in case of control field's subfield, otherwise the syntax is for <code>|a value</code> where a is subfield's identifier. 
 	 */
 	public String toString() {
 		if(id == Character.UNASSIGNED) return value;

@@ -41,7 +41,6 @@ public class Field {
 	}
 
 	/**
-	 * Getter for first indicator.
 	 * @return Field's first indicator, or Character.UNDEFINED if this is a control field.
 	 */
 	public char getFirstIndicator() {
@@ -49,7 +48,6 @@ public class Field {
 	}
 
 	/**
-	 * Getter for second indicator.
 	 * @return Field's second indicator, or Character.UNDEFINED if this is a control field.
 	 */
 	public char getSecondIndicator() {
@@ -57,8 +55,7 @@ public class Field {
 	}
 
 	/**
-	 * Getter for subfields.  Note that there isn't method for adding new
-	 * subfields, so use <code>field.getSubFields().add(subField)</code> for that.
+	 * Getter for subfields.  Note that there isn't method for adding new subfields, so use <code>field.getSubFields().add(subField)</code> for that.
 	 * @return Reference to list containing subfields.
 	 */
 	public List<SubField> getSubFields() {
@@ -66,7 +63,6 @@ public class Field {
 	}
 
 	/**
-	 * Getter for field's identifier.
 	 * @return Field's identifier.
 	 */
 	public int getId() {
@@ -134,7 +130,6 @@ public class Field {
 	}
 
 	/**
-	 * Sets field's identifier.
 	 * @param id Field's identifier.
 	 */
 	public void setId(int id) {
@@ -142,24 +137,21 @@ public class Field {
 	}
 
 	/**
-	 * Setter for field's first indicator.
-	 * @param firstIndicator
+	 * @param firstIndicator Fields first indicator.
 	 */
 	public void setFirstIndicator(Character firstIndicator) {
 		this.firstIndicator = firstIndicator;
 	}
 
 	/**
-	 * Setter for field's second indicator.
-	 * @param secondIndicator
+	 * @param secondIndicator Field's second indicator.
 	 */
 	public void setSecondIndicator(Character secondIndicator) {
 		this.secondIndicator = secondIndicator;
 	}
 
 	/**
-	 * Tells whether field is a control field.  Control field's indicators are
-	 * not saved to MARC record file.
+	 * Tells whether field is a control field.  Control field's indicators are not saved to MARC record file.
 	 * @return True if this is a control field.
 	 */
 	public boolean isControlField() {

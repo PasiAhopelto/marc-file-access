@@ -16,16 +16,13 @@ public class Record {
 
 	/**
 	 * Constructor for a record.
-	 * @param name Record's name.  It isn't stored into UNIMARC file as such,
-	 * and it doesn't need to be unique.  It could for example be derived 
-	 * from UNIMARC's field 200.
+	 * @param name Record's name. It isn't stored into UNIMARC file as such, and it doesn't need to be unique. It could for example be derived from UNIMARC's field 200.
 	 */
 	public Record(String name) {
 		this.name = name;
 	}
 
 	/**
-	 * Gets record's name.
 	 * @return Record's name.
 	 */
 	public String getName() {
@@ -33,8 +30,6 @@ public class Record {
 	}
 
 	/**
-	 * Getter for reference to fields of this record.  Note that new fields are
-	 * added with <code>record.getFields().add(field)</code>.
 	 * @return Record's fields.
 	 */
 	public List<Field> getFields() {
@@ -42,8 +37,7 @@ public class Record {
 	}
 
 	/**
-	 * Human (and machine) readable string representation of the record where
-	 * fields are separated by newlines.  
+	 * Human (and machine) readable string representation of the record where fields are separated by newlines.  
 	 * @return This object as string.
 	 * @see Field
 	 */
@@ -56,7 +50,6 @@ public class Record {
 	}
 
 	/**
-	 * Setter for record's name.
 	 * @param name Record's name.
 	 */
 	public void setName(String name) {
@@ -64,15 +57,13 @@ public class Record {
 	}
 
 	/**
-	 * Setter for record's label, which is the first 24 characters of a record in case or UNIMARC.
-	 * @param label Record's label.
+	 * @param label Record's label, which is the first 24 characters of a record in case or UNIMARC.
 	 */
 	public void setLabel(String label) {
 		this.label = label;
 	}
 
 	/**
-	 * Getter for record's label.
 	 * @return Record's label.
 	 */
 	public String getLabel() {
