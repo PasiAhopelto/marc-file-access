@@ -17,8 +17,13 @@ public class SubField implements Serializable {
 	char id;
 
 	/**
-	 * Constructor for a subfield with an identifier.  These are commonly used
-	 * with data fields.
+	 * Instantiates SubField with id and value set as null.
+	 */
+	public SubField() {
+	}
+	
+	/**
+	 * Constructor for a subfield with an identifier.
 	 * @param id Subfield's identifier, for example 'a'.  Id does not need to
 	 * be unique, if the subfield is repeatable.
 	 * @param value Subfield's value as string.

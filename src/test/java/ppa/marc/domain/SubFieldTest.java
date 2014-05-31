@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import org.meanbean.test.BeanTester;
+import org.meanbean.test.EqualsMethodTester;
+
 import junit.framework.TestCase;
 
 public class SubFieldTest extends TestCase {
@@ -23,13 +26,11 @@ public class SubFieldTest extends TestCase {
 	}
 
 	public void testEquality() throws Exception {
-		SubField other = new SubField('a', "value");
-		assertEquals(other, subField);
+		new BeanTester().testBean(SubField.class);
 	}
 
 	public void testHashCode() throws Exception {
-		SubField other = new SubField('a', "value");
-		assertEquals(other.hashCode(), subField.hashCode());
+		new EqualsMethodTester().testEqualsMethod(SubField.class, new String[0]);
 	}
 	
 	public void testToString() throws Exception {
