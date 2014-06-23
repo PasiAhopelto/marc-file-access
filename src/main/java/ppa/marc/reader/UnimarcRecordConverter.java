@@ -34,7 +34,7 @@ public class UnimarcRecordConverter implements RecordConverter {
 		Record record = new Record(identityExtractor.getIdentity(fieldsAsStrings));
 		record.setLabel(recordLabel);
 		for(int i = 0; i < directoryEntries.size(); ++i) {
-			record.getFields().add(fieldParser.parseField(directoryEntries.get(i).intValue(), fieldsAsStrings.get(i)));
+			record.addFields(fieldParser.parseField(directoryEntries.get(i).intValue(), fieldsAsStrings.get(i)));
 		}
 		return record;
 	}

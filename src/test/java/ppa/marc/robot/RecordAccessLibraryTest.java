@@ -106,7 +106,7 @@ public class RecordAccessLibraryTest extends TestCase {
 		StringBuilder stringBuilder = new StringBuilder();
 		for(int i = 0; i < numberOfRecords; ++i) {
 			record = new Record("");
-			record.getFields().add(new Field(1));
+			record.addFields(new Field(1));
 			records.add(record);
 			if(stringBuilder.length() > 0) stringBuilder.append('\n');
 			stringBuilder.append(record.toString());

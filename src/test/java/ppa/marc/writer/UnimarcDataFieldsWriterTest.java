@@ -41,27 +41,26 @@ public class UnimarcDataFieldsWriterTest extends TestCase {
 	}
 
 	public void testGrantedRecordHasControlFieldThenWritesItAndFieldTerminator() throws Exception {
-		record.getFields().add(controlField);
+		record.addFields(controlField);
 		writer.writeDataFields(outputStream, record);
 		assertEquals(CONTROL_FIELD_VALUE + UnimarcConstants.FIELD_TERMINATOR, outputStream.toString());
 	}
 	
 	public void testGrantedRecordHasNormalFieldThenWritesItWithIndicatorsFollowedByFieldTerminator() throws Exception {
-		record.getFields().add(normalField);
+		record.addFields(normalField);
 		writer.writeDataFields(outputStream, record);
 		assertEquals("" + FIRST_INDICATOR + SECOND_INDICATOR + EXPECTED_SUBFIELD + UnimarcConstants.FIELD_TERMINATOR, outputStream.toString());
 	}
 
 	public void testGrantedFieldHasTwoSubfieldsThenWritesBoth() throws Exception {
 		normalField.getSubFields().add(new SubField(SUBFIELD_ID, NORMAL_FIELD_VALUE));
-		record.getFields().add(normalField);
+		record.addFields(normalField);
 		writer.writeDataFields(outputStream, record);
 		assertEquals("" + FIRST_INDICATOR + SECOND_INDICATOR + EXPECTED_SUBFIELD + EXPECTED_SUBFIELD + UnimarcConstants.FIELD_TERMINATOR, outputStream.toString());
 	}
 
 	public void testGrantedRecordHasIdAndNormalFieldThenWritesBoth() throws Exception {
-		record.getFields().add(controlField);
-		record.getFields().add(normalField);
+		record.addFields(controlField, normalField);
 		writer.writeDataFields(outputStream, record);
 		assertEquals(CONTROL_FIELD_VALUE + UnimarcConstants.FIELD_TERMINATOR + FIRST_INDICATOR + SECOND_INDICATOR + EXPECTED_SUBFIELD + UnimarcConstants.FIELD_TERMINATOR, outputStream.toString());
 	}

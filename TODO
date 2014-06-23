@@ -1,4 +1,3 @@
-- Add record.addField()
 - Add field.addSubField()
 - Add record.hashCode()
 - Add field.hashCode()
@@ -8,3 +7,4 @@
 - use meanbean
 - use junit 4
 - use mockito
+- use guava

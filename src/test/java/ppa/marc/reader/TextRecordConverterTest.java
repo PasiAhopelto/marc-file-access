@@ -90,7 +90,7 @@ public class TextRecordConverterTest extends TestCase {
 	private Record createExpectedRecord() {
 		Record record = new Record(NAME);
 		record.setLabel(LABEL);
-		record.getFields().addAll(createExpectedFields());
+		record.addFields(createExpectedFields().toArray(new Field[0]));
 		return record;
 	}
 	

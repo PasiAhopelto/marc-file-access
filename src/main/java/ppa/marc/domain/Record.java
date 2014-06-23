@@ -82,5 +82,15 @@ public class Record {
 		}
 		return false;
 	}
+
+	/**
+	 * Adds field(s) intoa a record.
+	 * @param fields Fields to be added.
+	 */
+	public void addFields(Field... fields) {
+		for(Field field : fields) {
+			this.fields.add(field);
+		}
+	}
 	
 }

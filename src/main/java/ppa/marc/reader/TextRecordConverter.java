@@ -30,7 +30,7 @@ public class TextRecordConverter implements RecordConverter {
 		if(input == null || input.length() == 0) throwRuntimeException(input, "is empty.");
 		try {
 			for(String fieldAsString : recordToFieldsDivider.divideToFields(input)) {
-				record.getFields().add(convertField(input, fieldAsString));
+				record.addFields(convertField(input, fieldAsString));
 			}
 			if(record.getFields().isEmpty()) throwRuntimeException(input, "has no fields.");
 			setRecordIdentity(input, record);

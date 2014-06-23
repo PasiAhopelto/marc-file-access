@@ -12,8 +12,7 @@ public class RecordTest extends TestCase {
 	};
 
 	protected void setUp() throws Exception {
-		record.getFields().add(fields[0]);
-		record.getFields().add(fields[1]);
+		record.addFields(fields[0], fields[1]);
 	}
 	
 	public void testIdentifierCanBeSet() throws Exception {

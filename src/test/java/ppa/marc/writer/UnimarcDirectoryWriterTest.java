@@ -20,7 +20,7 @@ public class UnimarcDirectoryWriterTest extends TestCase {
 	ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
 	protected void setUp() throws Exception {
-		record.getFields().add(field);
+		record.addFields(field);
 	}
 	
 	public void testGrantedRecordHasNoFieldsThenWritesFieldTerminator() throws Exception {
@@ -64,7 +64,7 @@ public class UnimarcDirectoryWriterTest extends TestCase {
 
 	public void testGrantedThereAreTwoFieldsThenSecondAlsoHasTagLengtAndStartingPosition() throws Exception {
 		addSubFieldsToBothFields(1);
-		record.getFields().add(otherField);
+		record.addFields(otherField);
 		directoryWriter.writeDirectoryEntries(outputStream, record);
 		assertEquals("100", getTagOfField(2));
 		assertEquals("0005", getLengthOfField(2));
