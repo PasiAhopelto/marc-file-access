@@ -55,7 +55,7 @@ public class FromFieldIdentityExtractorTest extends TestCase {
 	}
 	
 	private void addIdentityField(String identity) {
-		ID_FIELD.getSubFields().add(new SubField(identity));
+		ID_FIELD.addSubFields(new SubField(identity));
 		fields.add(ID_FIELD);
 	}
 	private void addOtherField() {

@@ -45,7 +45,7 @@ public class UnimarcFieldParser implements FieldParser {
 
 	private void parseSubFieldsStartingFromIndex(int index, int id, String[] subFieldsAsString, Field field) {
 		for(int i = index; i < subFieldsAsString.length; ++i) {
-			field.getSubFields().add(subFieldParser.parse(subFieldsAsString[i], isZeroZeroField(id)));
+			field.addSubFields(subFieldParser.parse(subFieldsAsString[i], isZeroZeroField(id)));
 		}
 	}
 

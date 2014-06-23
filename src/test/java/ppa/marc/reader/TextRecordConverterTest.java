@@ -97,7 +97,7 @@ public class TextRecordConverterTest extends TestCase {
 	private List<Field> createExpectedFields() {
 		List<Field> expectedFields = new ArrayList<Field>();
 		Field expectedField = new Field(FIELD.getId());
-		expectedField.getSubFields().addAll(subFields);
+		expectedField.addSubFields(subFields.toArray(new SubField[0]));
 		expectedFields.add(expectedField);
 		return expectedFields;
 	}

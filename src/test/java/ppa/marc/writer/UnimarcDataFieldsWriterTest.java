@@ -27,8 +27,8 @@ public class UnimarcDataFieldsWriterTest extends TestCase {
 	Field normalField = new Field(2, FIRST_INDICATOR, SECOND_INDICATOR);
 	
 	protected void setUp() throws Exception {
-		controlField.getSubFields().add(new SubField(CONTROL_FIELD_VALUE));
-		normalField.getSubFields().add(new SubField(SUBFIELD_ID, NORMAL_FIELD_VALUE));
+		controlField.addSubFields(new SubField(CONTROL_FIELD_VALUE));
+		normalField.addSubFields(new SubField(SUBFIELD_ID, NORMAL_FIELD_VALUE));
 	}
 	
 	public void testGrantedThereAreNoFieldsThenThrowsIllegalArgumentException() throws Exception {
@@ -53,7 +53,7 @@ public class UnimarcDataFieldsWriterTest extends TestCase {
 	}
 
 	public void testGrantedFieldHasTwoSubfieldsThenWritesBoth() throws Exception {
-		normalField.getSubFields().add(new SubField(SUBFIELD_ID, NORMAL_FIELD_VALUE));
+		normalField.addSubFields(new SubField(SUBFIELD_ID, NORMAL_FIELD_VALUE));
 		record.addFields(normalField);
 		writer.writeDataFields(outputStream, record);
 		assertEquals("" + FIRST_INDICATOR + SECOND_INDICATOR + EXPECTED_SUBFIELD + EXPECTED_SUBFIELD + UnimarcConstants.FIELD_TERMINATOR, outputStream.toString());

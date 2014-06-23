@@ -1,5 +1,6 @@
 package ppa.marc.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,13 +10,15 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 /**
  * UNIMARC field for control or bibliographic data.
  */
-public class Field {
+public class Field implements Serializable {
 
-	int id;
-	char firstIndicator;
-	char secondIndicator;
-	protected final List<SubField> subFields = new ArrayList<SubField>();
-	protected boolean isControlField; 
+	private static final long serialVersionUID = 1L;
+	
+	private int id;
+	private char firstIndicator;
+	private char secondIndicator;
+	private final List<SubField> subFields = new ArrayList<SubField>();
+	private boolean isControlField; 
 	
 	/**
 	 * Constructor for a data field.
@@ -55,7 +58,7 @@ public class Field {
 	}
 
 	/**
-	 * Getter for subfields.  Note that there isn't method for adding new subfields, so use <code>field.getSubFields().add(subField)</code> for that.
+	 * Getter for subfields.
 	 * @return Reference to list containing subfields.
 	 */
 	public List<SubField> getSubFields() {
@@ -166,4 +169,14 @@ public class Field {
 		this.isControlField = isControlField;
 	}
 
+	/**
+	 * Adds subfields.
+	 * @param subFields Subfields to be added.
+	 */
+	public void addSubFields(SubField... subFields) {
+		for(SubField subField : subFields) {
+			this.subFields.add(subField);
+		}
+	}
+	
 }

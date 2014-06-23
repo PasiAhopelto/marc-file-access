@@ -12,8 +12,8 @@ public class SubField implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	String value;
-	char id;
+	private String value;
+	private char id;
 
 	/**
 	 * Instantiates SubField with id and value set as null.

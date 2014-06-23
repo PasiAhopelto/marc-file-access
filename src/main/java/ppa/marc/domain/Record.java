@@ -1,5 +1,6 @@
 package ppa.marc.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,9 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 /**
  * UNIMARC bibliographic record that consists of <code>Field</code>s.
  */
-public class Record {
+public class Record implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private final List<Field> fields = new ArrayList<Field>();
 	private String name;

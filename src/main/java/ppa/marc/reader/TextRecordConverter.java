@@ -6,6 +6,7 @@ import javax.inject.Singleton;
 
 import ppa.marc.domain.Field;
 import ppa.marc.domain.Record;
+import ppa.marc.domain.SubField;
 
 @Named
 @Singleton
@@ -48,7 +49,7 @@ public class TextRecordConverter implements RecordConverter {
 
 	private Field convertField(String input, String fieldAsString) throws MarcFormatException {
 		Field field = fieldIdAndIndicatorExtractor.parseBaseField(fieldAsString);
-		field.getSubFields().addAll(subFieldExtractor.parseSubFields(fieldAsString));
+		field.addSubFields(subFieldExtractor.parseSubFields(fieldAsString).toArray(new SubField[0]));
 		if(field.getSubFields().isEmpty()) throwRuntimeException(input, "has field '" + fieldAsString + "' without values.");
 		return field;
 	}

@@ -35,7 +35,7 @@ public class FieldTest extends TestCase {
 	
 	public void testReferenceToSubFieldListIsAccessible() throws Exception {
 		SubField subField = new SubField('a', "value");
-		field.getSubFields().add(subField);
+		field.addSubFields(subField);
 		assertSame(subField, field.getSubFields().get(0));
 	}
 
@@ -48,21 +48,20 @@ public class FieldTest extends TestCase {
 	}
 
 	public void testToString() throws Exception {
-		field.getSubFields().add(subFields[0]);
-		field.getSubFields().add(subFields[1]);
+		field.addSubFields(subFields);
 		assertEquals("001._1 " + subFields[0].toString() + "\n       " + subFields[1] + "\n", field.toString());
 	}
 	
 	public void testToStringInCaseOfNoIndicators() throws Exception {
 		Field field = new Field(ID);
 		SubField subField = new SubField("data");
-		field.getSubFields().add(subField);
+		field.addSubFields(subField);
 		assertEquals("001    " + subField.toString() + "\n", field.toString());
 	}
 	
 	public void testIdAndIndicatorsAreSettable() throws Exception {
 		Field otherField = new Field(900, '2', '3');
-		otherField.getSubFields().addAll(field.getSubFields());
+		otherField.addSubFields(field.getSubFields().toArray(new SubField[0]));
 		field.setId(otherField.getId());
 		field.setFirstIndicator(otherField.getFirstIndicator());
 		field.setSecondIndicator(otherField.getSecondIndicator());
@@ -77,7 +76,7 @@ public class FieldTest extends TestCase {
 
 	public void testGrantedControlFieldStatusIsSetThenGetterReturnsCorrectStatus() throws Exception {
 		field.setIsControlField(true);
-		assertTrue(field.isControlField);
+		assertTrue(field.isControlField());
 	}
 	
 }

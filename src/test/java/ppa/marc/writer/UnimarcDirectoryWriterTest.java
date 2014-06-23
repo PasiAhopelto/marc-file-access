@@ -108,8 +108,8 @@ public class UnimarcDirectoryWriterTest extends TestCase {
 
 	private void addSubFieldsToBothFields(int count) {
 		for(int i = 0; i < count; ++i) {
-			field.getSubFields().add(subField);
-			otherField.getSubFields().add(subField);
+			field.addSubFields(subField);
+			otherField.addSubFields(subField);
 		}
 	}
 	

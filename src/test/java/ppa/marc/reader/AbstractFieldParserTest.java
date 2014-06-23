@@ -33,7 +33,7 @@ abstract public class AbstractFieldParserTest extends TestCase {
 	}
 
 	protected void addExpectedSubField(SubField expectedSubField, Field expectedField, String subFieldStringToParse, boolean isZeroZero) {
-		expectedField.getSubFields().add(expectedSubField);
+		expectedField.addSubFields(expectedSubField);
 		expect(subFieldParser.parse(subFieldStringToParse, isZeroZero)).andReturn(expectedSubField);
 	}
 
