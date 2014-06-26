@@ -1,4 +1,3 @@
-- Add record.hashCode()
 - Add field.hashCode()
 - Move RecordAccessLibrary to a test package
 - Add context class which replaces ClassPathContext use

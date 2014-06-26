@@ -1,5 +1,7 @@
 package ppa.marc.domain;
 
+import org.meanbean.test.EqualsMethodTester;
+
 import junit.framework.TestCase;
 
 public class FieldTest extends TestCase {
@@ -39,14 +41,6 @@ public class FieldTest extends TestCase {
 		assertSame(subField, field.getSubFields().get(0));
 	}
 
-	public void testEquality() throws Exception {
-		assertEquals(new Field(100, '0', '1'), new Field(100, '0', '1'));
-	}
-
-	public void testEqualityWithoutIndicators() throws Exception {
-		assertEquals(new Field(100), new Field(100));
-	}
-
 	public void testToString() throws Exception {
 		field.addSubFields(subFields);
 		assertEquals("001._1 " + subFields[0].toString() + "\n       " + subFields[1] + "\n", field.toString());
@@ -77,6 +71,10 @@ public class FieldTest extends TestCase {
 	public void testGrantedControlFieldStatusIsSetThenGetterReturnsCorrectStatus() throws Exception {
 		field.setIsControlField(true);
 		assertTrue(field.isControlField());
+	}
+	
+	public void testEquals() {
+		new EqualsMethodTester().testEqualsMethod(Field.class);
 	}
 	
 }

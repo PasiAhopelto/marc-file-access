@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * UNIMARC field for control or bibliographic data.
@@ -19,6 +20,9 @@ public class Field implements Serializable {
 	private char secondIndicator;
 	private final List<SubField> subFields = new ArrayList<SubField>();
 	private boolean isControlField; 
+
+	public Field() {
+	}
 	
 	/**
 	 * Constructor for a data field.
@@ -177,6 +181,11 @@ public class Field implements Serializable {
 		for(SubField subField : subFields) {
 			this.subFields.add(subField);
 		}
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(id).append(firstIndicator).append(secondIndicator).append(subFields).append(isControlField).toHashCode();
 	}
 	
 }

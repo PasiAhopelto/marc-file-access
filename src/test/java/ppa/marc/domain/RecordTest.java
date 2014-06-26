@@ -1,10 +1,12 @@
 package ppa.marc.domain;
 
+import org.meanbean.test.EqualsMethodTester;
+import org.meanbean.test.HashCodeMethodTester;
+
 import junit.framework.TestCase;
 
 public class RecordTest extends TestCase {
 
-	private static final String LABEL = "label";
 	Record record = new Record("identifier");
 	Field[] fields = {
 		new Field(10, 'a', 'b'),
@@ -32,28 +34,12 @@ public class RecordTest extends TestCase {
 		assertEquals("id", record.getName());
 	}
 
-	public void testGrantedLabelIsSetThenItIsReturnedByGetter() throws Exception {
-		record.setLabel(LABEL);
-		assertEquals(LABEL, record.getLabel());
+	public void testEquals() {
+		new EqualsMethodTester().testEqualsMethod(Record.class);
 	}
 
-	public void testGrantedNamesDifferThenEqualsReturnsFalse() throws Exception {
-		assertFalse(new Record("other").equals(record));
-	}
-
-	public void testGrantedNamesAreSameThenEqualsReturnsFalse() throws Exception {
-		record.getFields().clear();
-		assertTrue(new Record(record.getName()).equals(record));
-	}
-
-	public void testGrantedLabelsDifferThenEqualsReturnsFalse() throws Exception {
-		record.getFields().clear();
-		record.setLabel("other label");
-		assertFalse(new Record(record.getName()).equals(record));
-	}
-
-	public void testGrantedFieldsDifferThenEqualsReturnsFalse() throws Exception {
-		assertFalse(new Record(record.getName()).equals(record));
+	public void testHashcode() {
+		new HashCodeMethodTester().testHashCodeMethod(Record.class);
 	}
 	
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * UNIMARC bibliographic record that consists of <code>Field</code>s.
@@ -17,6 +18,9 @@ public class Record implements Serializable {
 	private String name;
 	private String label;
 
+	public Record() {
+	}
+	
 	/**
 	 * Constructor for a record.
 	 * @param name Record's name. It isn't stored into UNIMARC file as such, and it doesn't need to be unique. It could for example be derived from UNIMARC's field 200.
@@ -94,6 +98,11 @@ public class Record implements Serializable {
 		for(Field field : fields) {
 			this.fields.add(field);
 		}
+	}
+	
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(name).append(label).append(fields).toHashCode();
 	}
 	
 }
