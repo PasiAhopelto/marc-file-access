@@ -3,8 +3,7 @@ package ppa.marc.reader;
 import java.util.Collection;
 import java.util.List;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.collections.Predicate;
+import java.util.stream.Collectors;
 
 import ppa.marc.domain.Field;
 
@@ -21,13 +20,9 @@ public class FromFieldIdentityExtractor {
 		return identifier;
 	}
 
-	@SuppressWarnings("unchecked")
 	private Collection<Field> selectIdentifyingFields(List<Field> fields) {
-		Collection<Field> identifyingFields = (Collection<Field>) CollectionUtils.select(fields, new Predicate() {
-			public boolean evaluate(Object fieldAsObject) {
-				return ((Field) fieldAsObject).getId() == ID_FIELD_ID;
-			}
-		});
-		return identifyingFields;
+		return fields.stream()
+				.filter(field -> field.getId() == ID_FIELD_ID)
+				.collect(Collectors.toList());
 	}
 }

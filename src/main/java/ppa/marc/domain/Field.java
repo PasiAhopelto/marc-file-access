@@ -3,8 +3,8 @@ package ppa.marc.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.EqualsBuilder;
 
 /**
  * UNIMARC field for control or bibliographic data.
@@ -90,7 +90,6 @@ public class Field {
 	 * 001    0860788709
 	 * </pre>
      * Data fields use following formatting:
-	 * </pre>
 	 * <pre>
 	 * 711.02 |a Ashgate/Variorum
      *        |4 650

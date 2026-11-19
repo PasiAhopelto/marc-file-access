@@ -1,20 +1,27 @@
 package ppa.marc.reader;
 
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+
 import static org.easymock.EasyMock.*;
 import ppa.marc.domain.Field;
 import ppa.marc.domain.SubField;
-import junit.framework.TestCase;
 
-abstract public class AbstractFieldParserTest extends TestCase {
+abstract public class AbstractFieldParserTest {
 
 	SubFieldParser subFieldParser = createStrictMock(SubFieldParser.class);
 	FieldParser parser = createFieldParser(subFieldParser);
+
+	@AfterEach
 
 	protected void tearDown() throws Exception {
 		verify(subFieldParser);
 	}
 	
 	protected abstract FieldParser createFieldParser(SubFieldParser subFieldParser);
+
+	@Test
 
 	public void testThrowsExceptionWithEmptyInput() throws Exception {
 		replay(subFieldParser);
@@ -25,6 +32,8 @@ abstract public class AbstractFieldParserTest extends TestCase {
 		catch(IllegalArgumentException ignore) {
 		}
 	}
+	
+	@Test
 	
 	public void testGivesZeroZeroSubFieldToSubFieldParser() throws Exception {
 		Field expectedField = new Field(1);

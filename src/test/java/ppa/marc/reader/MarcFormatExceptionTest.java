@@ -1,10 +1,14 @@
 package ppa.marc.reader;
 
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
-public class MarcFormatExceptionTest extends TestCase {
+
+public class MarcFormatExceptionTest {
 
 	private static final String MESSAGE = "message";
+
+	@Test
 
 	public void testGrantedMessageIsPassedAsConstructorArgumentThenItIsReturnedAsMessage() throws Exception {
 		assertEquals(MESSAGE, new MarcFormatException(MESSAGE).getMessage());

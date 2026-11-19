@@ -1,5 +1,9 @@
 package ppa.marc.writer;
 
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import java.io.ByteArrayOutputStream;
 
 import ppa.marc.common.UnimarcConstants;
@@ -7,9 +11,8 @@ import ppa.marc.domain.Field;
 import ppa.marc.domain.Record;
 import ppa.marc.domain.SubField;
 
-import junit.framework.TestCase;
 
-public class UnimarcDataFieldsWriterTest extends TestCase {
+public class UnimarcDataFieldsWriterTest {
 
 	private static final char SECOND_INDICATOR = '1';
 	private static final char FIRST_INDICATOR = '0';
@@ -26,10 +29,14 @@ public class UnimarcDataFieldsWriterTest extends TestCase {
 	Field controlField = new Field(1);
 	Field normalField = new Field(2, FIRST_INDICATOR, SECOND_INDICATOR);
 	
+	@BeforeEach
+	
 	protected void setUp() throws Exception {
 		controlField.getSubFields().add(new SubField(CONTROL_FIELD_VALUE));
 		normalField.getSubFields().add(new SubField(SUBFIELD_ID, NORMAL_FIELD_VALUE));
 	}
+	
+	@Test
 	
 	public void testGrantedThereAreNoFieldsThenThrowsIllegalArgumentException() throws Exception {
 		try {
@@ -40,11 +47,15 @@ public class UnimarcDataFieldsWriterTest extends TestCase {
 		}
 	}
 
+	@Test
+
 	public void testGrantedRecordHasControlFieldThenWritesItAndFieldTerminator() throws Exception {
 		record.getFields().add(controlField);
 		writer.writeDataFields(outputStream, record);
 		assertEquals(CONTROL_FIELD_VALUE + UnimarcConstants.FIELD_TERMINATOR, outputStream.toString());
 	}
+	
+	@Test
 	
 	public void testGrantedRecordHasNormalFieldThenWritesItWithIndicatorsFollowedByFieldTerminator() throws Exception {
 		record.getFields().add(normalField);
@@ -52,12 +63,16 @@ public class UnimarcDataFieldsWriterTest extends TestCase {
 		assertEquals("" + FIRST_INDICATOR + SECOND_INDICATOR + EXPECTED_SUBFIELD + UnimarcConstants.FIELD_TERMINATOR, outputStream.toString());
 	}
 
+	@Test
+
 	public void testGrantedFieldHasTwoSubfieldsThenWritesBoth() throws Exception {
 		normalField.getSubFields().add(new SubField(SUBFIELD_ID, NORMAL_FIELD_VALUE));
 		record.getFields().add(normalField);
 		writer.writeDataFields(outputStream, record);
 		assertEquals("" + FIRST_INDICATOR + SECOND_INDICATOR + EXPECTED_SUBFIELD + EXPECTED_SUBFIELD + UnimarcConstants.FIELD_TERMINATOR, outputStream.toString());
 	}
+
+	@Test
 
 	public void testGrantedRecordHasIdAndNormalFieldThenWritesBoth() throws Exception {
 		record.getFields().add(controlField);

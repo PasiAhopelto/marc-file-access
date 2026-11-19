@@ -1,5 +1,9 @@
 package ppa.marc.reader;
 
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,11 +14,10 @@ import java.util.regex.Pattern;
 import ppa.marc.RecordReader;
 import ppa.marc.domain.Record;
 import ppa.marc.reader.TextFileReader;
-import junit.framework.TestCase;
 
-import static org.easymock.classextension.EasyMock.*;
+import static org.easymock.EasyMock.*;
 
-public class TextFileReaderTest extends TestCase {
+public class TextFileReaderTest {
 	private static final String SINGLE_LINE = "record";
 	private static final String TWO_LINES = SINGLE_LINE + "\n" + SINGLE_LINE;
 	private static final Record RECORD = new Record("");
@@ -26,10 +29,14 @@ public class TextFileReaderTest extends TestCase {
 	
 	List<Record> expectedRecords = new ArrayList<Record>();
 	
+	@AfterEach
+	
 	protected void tearDown() throws Exception {
 		verify(recordConverter);
 		verify(specialLineChecker);
 	}
+	
+	@Test
 	
 	public void testGrantedTheresNothingToReadThenReturnsEmptyCollection() throws Exception {
 		InputStream inputStream = createInputStreamFrom(new String[] { "" });
@@ -37,17 +44,25 @@ public class TextFileReaderTest extends TestCase {
 		assertEquals(expectedRecords, reader.read(inputStream));
 	}
 
+	@Test
+
 	public void testGrantedThereAreNoEmptyLinesThenPassesEverythingToRecordConverterAndAddsResultToList() throws Exception {
 		assertSingleRecordReadingWithInput(new String[] { SINGLE_LINE });
 	}
+
+	@Test
 
 	public void testGrantedEmptyLinePreceedsRecordThenDropsTheLineBeforePassingItToConverter() throws Exception {
 		assertSingleRecordReadingWithInput(new String[] { "", SINGLE_LINE });
 	}
 
+	@Test
+
 	public void testInputHasLineThatStartsWithHashThenItIsIgnored() throws Exception {
 		assertSingleRecordReadingWithInput(new String[] { "#", SINGLE_LINE });
 	}
+	
+	@Test
 	
 	public void testGrantedEmptyLineSeparatesTextBlocksThenDropsTheLineAndHandlesTheBlocksAsTwoRecords() throws Exception {
 		expectSingleRecord(SINGLE_LINE);
@@ -57,6 +72,8 @@ public class TextFileReaderTest extends TestCase {
 		assertEquals(expectedRecords, reader.read(inputStream));
 	}
 
+	@Test
+
 	public void testGrantedSpaceLineSeparatesTextBlocksThenDropsTheLineAndHandlesTheBlocksAsTwoRecords() throws Exception {
 		expectSingleRecord(SINGLE_LINE);
 		expectSingleRecord(SINGLE_LINE);
@@ -64,6 +81,8 @@ public class TextFileReaderTest extends TestCase {
 		replayMocks();
 		assertEquals(expectedRecords, reader.read(inputStream));
 	}
+
+	@Test
 
 	public void testGrantedInputHasTwoNonEmptyLinesThenParsesItToOneRecord() throws Exception {
 		expectSingleRecord(TWO_LINES);

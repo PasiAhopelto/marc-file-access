@@ -1,12 +1,16 @@
 package ppa.marc.reader;
 
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
 import ppa.marc.domain.SubField;
 import ppa.marc.reader.UnimarcSubFieldParser;
-import junit.framework.TestCase;
 
-public class UnimarcSubFieldParserTest extends TestCase {
+public class UnimarcSubFieldParserTest {
 
 	SubFieldParser parser = new UnimarcSubFieldParser();
+	
+	@Test
 	
 	public void testThrowsExceptionIfEmptyField() throws Exception {
 		try {
@@ -17,10 +21,14 @@ public class UnimarcSubFieldParserTest extends TestCase {
 		}
 	}
 	
+	@Test
+	
 	public void testExtractsDataOfZeroZeroField() throws Exception {
 		SubField expectedSubField = new SubField("data");
 		assertEquals(expectedSubField, parser.parse("data", true));
 	}
+
+	@Test
 
 	public void testExtractsDataAndId() throws Exception {
 		SubField expectedSubField = new SubField('a', "data");
