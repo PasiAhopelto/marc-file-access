@@ -1,5 +1,9 @@
 package ppa.marc.writer;
 
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,10 +12,9 @@ import java.util.List;
 import ppa.marc.RecordWriter;
 import ppa.marc.common.UnimarcConstants;
 import ppa.marc.domain.Record;
-import junit.framework.TestCase;
 import static org.easymock.EasyMock.*;
 
-public class UnimarcRecordWriterTest extends TestCase {
+public class UnimarcRecordWriterTest {
 
 	private static final String LABEL = "label";
 	DirectoryWriter directoryWriter = createStrictMock(DirectoryWriter.class);
@@ -26,10 +29,14 @@ public class UnimarcRecordWriterTest extends TestCase {
 	
 	List<Record> records = new ArrayList<Record>();
 
+	@AfterEach
+
 	protected void tearDown() throws Exception {
 		verify(directoryWriter);
 		verify(dataFieldsWriter);
 	}
+
+	@Test
 
 	public void testGrantedStreamWorksThenWritesTwentyFourBytesAndDirectoryAndDataFieldsAndRecordTerminator() throws Exception {
 		expectRecords(1);
@@ -38,12 +45,16 @@ public class UnimarcRecordWriterTest extends TestCase {
 		assertOutputStreamHasRecordLabelsAndTerminator(1);
 	}
 
+	@Test
+
 	public void testGrantedStreamWorksThenWritesTwoRecords() throws Exception {
 		expectRecords(2);
 		replayMocks();
 		writer.writeRecords(outputStream, records);
 		assertOutputStreamHasRecordLabelsAndTerminator(2);
 	}
+	
+	@Test
 	
 	public void testGrantedRecordHasLabelThenItIsUsedInsteadOfDefault() throws Exception {
 		record.setLabel(LABEL);

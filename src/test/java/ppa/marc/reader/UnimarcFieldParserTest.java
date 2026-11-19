@@ -1,5 +1,7 @@
 package ppa.marc.reader;
 
+import org.junit.jupiter.api.Test;
+
 import ppa.marc.reader.AbstractFieldParserTest;
 import ppa.marc.common.UnimarcConstants;
 import ppa.marc.domain.Field;
@@ -12,11 +14,15 @@ public class UnimarcFieldParserTest extends AbstractFieldParserTest {
 		return new UnimarcFieldParser(subFieldParser);
 	}
 
+	@Test
+
 	public void testNormalSubFieldGetsParsed() throws Exception {
 		Field expectedField = new Field(10, '0', '1');
 		addExpectedSubField(new SubField('a', "data"), expectedField, "adata", false);
 		parseReplayAndVerify(expectedField, 10, "01" + UnimarcConstants.SUBFIELD_DELIMITER + "adata");
 	}
+
+	@Test
 
 	public void testTwoSubFieldsGetParsed() throws Exception {
 		Field expectedField = new Field(10, '0', '1');

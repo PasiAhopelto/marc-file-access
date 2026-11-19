@@ -1,5 +1,9 @@
 package ppa.marc.robot;
 
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -13,10 +17,9 @@ import ppa.marc.RecordWriter;
 import ppa.marc.domain.Field;
 import ppa.marc.domain.Record;
 import ppa.marc.robot.RecordAccessLibrary;
-import junit.framework.TestCase;
 import static org.easymock.EasyMock.*;
 
-public class RecordAccessLibraryTest extends TestCase {
+public class RecordAccessLibraryTest {
 
 	private ArrayList<Record> records = new ArrayList<Record>();
 
@@ -45,20 +48,28 @@ public class RecordAccessLibraryTest extends TestCase {
 
 	private Record record;
 	
+	@AfterEach
+	
 	protected void tearDown() throws Exception {
 		verify(recordReader);
 		verify(recordWriter);
 	}
+	
+	@Test
 	
 	public void testGrantedInputFileDoesNotExistThenThrowsFileNotFoundException() throws Exception {
 		inputFileExists = false;
 		assertReadAndPrintFails();
 	}
 
+	@Test
+
 	public void testGrantedReaderFailsThenExceptionGetsThrown() throws Exception {
 		expect(recordReader.read(inputStream)).andThrow(new IOException());
 		assertReadAndPrintFails();
 	}
+
+	@Test
 
 	public void testGrantedWriterFailsThenExceptionGetsThrown() throws Exception {
 		expect(recordReader.read(inputStream)).andReturn(records);
@@ -67,6 +78,8 @@ public class RecordAccessLibraryTest extends TestCase {
 		assertReadAndPrintFails();
 	}
 
+	@Test
+
 	public void testGrantedWritingSucceedsThenListReturnedByReaderIsPassedToWriter() throws Exception {
 		expect(recordReader.read(inputStream)).andReturn(records);
 		recordWriter.writeRecords(isA(OutputStream.class), eq(records));
@@ -74,12 +87,16 @@ public class RecordAccessLibraryTest extends TestCase {
 		assertEquals("", readAndPrintRecord.readRecord(FILENAME));
 	}
 
+	@Test
+
 	public void testGrantedRecordIsPrintedAsTextThenToStringOfRecordIsUsed() throws Exception {
 		String recordsAsString = addRecords(1);
 		expect(recordReader.read(inputStream)).andReturn(records);
 		replayMocks();
 		assertEquals(recordsAsString, readAndPrintRecord.printRecordWithToString(FILENAME));
 	}
+
+	@Test
 
 	public void testGrantedTwoRecordsArePrintedAsTextThenToStringOutputsAreConcatenated() throws Exception {
 		String recordsAsString = addRecords(2);

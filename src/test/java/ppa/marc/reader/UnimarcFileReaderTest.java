@@ -1,5 +1,8 @@
 package ppa.marc.reader;
 
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
 import java.io.ByteArrayInputStream;
 import java.util.List;
 
@@ -8,11 +11,10 @@ import ppa.marc.common.UnimarcConstants;
 import ppa.marc.domain.Record;
 import ppa.marc.reader.UnimarcFileReader;
 
-import junit.framework.TestCase;
 
 import static org.easymock.EasyMock.*;
 
-public class UnimarcFileReaderTest extends TestCase {
+public class UnimarcFileReaderTest {
 
 	RecordConverter recordConverter = createStrictMock(RecordConverter.class);
 	Record[] records = new Record[] {
@@ -21,10 +23,14 @@ public class UnimarcFileReaderTest extends TestCase {
 	};
 	RecordReader fileReader = new UnimarcFileReader(recordConverter);
 	
+	@Test
+	
 	public void testReturnsEmptyListIfInputStreamIsEmpty() throws Exception {
 		List<Record> recordsAsStrings = fileReader.read(new ByteArrayInputStream(new byte[0]));
 		assertEquals(0, recordsAsStrings.size());
 	}
+	
+	@Test
 	
 	public void testReturnsTwoRecordsWithTrailingRecordTerminators() throws Exception {
 		expectTwoRecords();

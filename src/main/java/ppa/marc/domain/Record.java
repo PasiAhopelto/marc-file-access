@@ -3,7 +3,7 @@ package ppa.marc.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
 
 /**
  * UNIMARC bibliographic record that consists of <code>Field</code>s.
@@ -81,7 +81,7 @@ public class Record {
 
 	/**
 	 * Tests equality against other record.
-	 * @param other Record to test against.
+	 * @param obj Record to test against.
 	 * @return True, if records are equal: names, labels and fields are identical.
 	 */
 	public boolean equals(Object obj) {

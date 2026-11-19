@@ -3,7 +3,7 @@ package ppa.marc.reader;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import ppa.marc.common.UnimarcConstants;
 

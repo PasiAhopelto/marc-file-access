@@ -1,6 +1,6 @@
 package ppa.marc.reader;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import ppa.marc.common.UnimarcConstants;
 

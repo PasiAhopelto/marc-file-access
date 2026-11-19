@@ -1,5 +1,9 @@
 package ppa.marc.writer;
 
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
@@ -7,9 +11,8 @@ import ppa.marc.common.UnimarcConstants;
 import ppa.marc.domain.Field;
 import ppa.marc.domain.Record;
 import ppa.marc.domain.SubField;
-import junit.framework.TestCase;
 
-public class UnimarcDirectoryWriterTest extends TestCase {
+public class UnimarcDirectoryWriterTest {
 
 	SubField subField = new SubField("1234");
 	Field field = new Field(10);
@@ -19,9 +22,13 @@ public class UnimarcDirectoryWriterTest extends TestCase {
 	DirectoryWriter directoryWriter = new UnimarcDirectoryWriter();
 	ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
+	@BeforeEach
+
 	protected void setUp() throws Exception {
 		record.getFields().add(field);
 	}
+	
+	@Test
 	
 	public void testGrantedRecordHasNoFieldsThenWritesFieldTerminator() throws Exception {
 		record.getFields().clear();
@@ -29,15 +36,21 @@ public class UnimarcDirectoryWriterTest extends TestCase {
 		assertEquals(String.valueOf(UnimarcConstants.FIELD_TERMINATOR), outputStream.toString());
 	}
 
+	@Test
+
 	public void testGrantedRecordHasSingleFieldThenWritesThreeDigitTagFirst() throws Exception {
 		directoryWriter.writeDirectoryEntries(outputStream, record);
 		assertEquals("010", getTagOfField(1));
 	}
 	
+	@Test
+	
 	public void testGrantedDataIsFourCharactersLongAndNoIndicatorsThenLengthIs0005() throws Exception {
 		addSubFieldsToBothFields(1);
 		assertWriteProducesDataLengthOf("0005");
 	}
+
+	@Test
 
 	public void testGrantedDataIsFourCharactersLongWithIndicatorsThenLengthIs0007() throws Exception {
 		addIndicatorsToField();
@@ -45,22 +58,30 @@ public class UnimarcDirectoryWriterTest extends TestCase {
 		assertWriteProducesDataLengthOf("0007");
 	}
 
+	@Test
+
 	public void testGrantedTwoSubFieldsWithFourCharacterDataWithIndicatorsThenLengthIs0011() throws Exception {
 		addIndicatorsToField();
 		addSubFieldsToBothFields(2);
 		assertWriteProducesDataLengthOf("0011");
 	}
 
+	@Test
+
 	public void testGrantedFieldIsFirstThenItsStartingPositionIs00000() throws Exception {
 		directoryWriter.writeDirectoryEntries(outputStream, record);
 		assertEquals("00000", getStartingPositionOfField(1));
 	}
+
+	@Test
 
 	public void testGrantedSubFieldHasIdThenItIncreasesLengthByTwo() throws Exception {
 		addSubFieldsToBothFields(1);
 		subField.setId('a');
 		assertWriteProducesDataLengthOf("0007");
 	}
+
+	@Test
 
 	public void testGrantedThereAreTwoFieldsThenSecondAlsoHasTagLengtAndStartingPosition() throws Exception {
 		addSubFieldsToBothFields(1);
@@ -70,6 +91,8 @@ public class UnimarcDirectoryWriterTest extends TestCase {
 		assertEquals("0005", getLengthOfField(2));
 		assertEquals("00005", getStartingPositionOfField(2));
 	}
+
+	@Test
 
 	public void testGrantedDirectoryIsWrittenThenItIsFollowedByFieldTerminator() throws Exception {
 		directoryWriter.writeDirectoryEntries(outputStream, record);

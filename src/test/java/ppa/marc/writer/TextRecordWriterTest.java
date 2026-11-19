@@ -1,14 +1,16 @@
 package ppa.marc.writer;
 
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import ppa.marc.RecordWriter;
 import ppa.marc.domain.Record;
-import junit.framework.TestCase;
 
-public class TextRecordWriterTest extends TestCase {
+public class TextRecordWriterTest {
 
 	private static final String RECORD_AS_TEXT = "first record";
 
@@ -22,16 +24,22 @@ public class TextRecordWriterTest extends TestCase {
 		}
 	};
 	
+	@Test
+	
 	public void testGrantedThereAreNoRecordThenNothingIsWritten() throws Exception {
 		writer.writeRecords(outputStream, records);
 		assertEquals(0, outputStream.size());
 	}
+	
+	@Test
 	
 	public void testGrantedThereIsRecordThenItsTostringIsWrittenToOutputStream() throws Exception {
 		records.add(record);
 		writer.writeRecords(outputStream, records);
 		assertEquals(RECORD_AS_TEXT, outputStream.toString());
 	}
+
+	@Test
 
 	public void testGrantedThereAreTwoRecordsThenTheyAreSeparatedByNewline() throws Exception {
 		records.add(record);

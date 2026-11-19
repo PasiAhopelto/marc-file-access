@@ -1,5 +1,9 @@
 package ppa.marc.reader;
 
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,11 +11,10 @@ import ppa.marc.domain.Field;
 import ppa.marc.domain.Record;
 import ppa.marc.domain.SubField;
 
-import junit.framework.TestCase;
 
-import static org.easymock.classextension.EasyMock.*;
+import static org.easymock.EasyMock.*;
 
-public class TextRecordConverterTest extends TestCase {
+public class TextRecordConverterTest {
 
 	private static final String MESSAGE = "message";
 	private static final String FIELD_AS_STRING = "field";
@@ -32,6 +35,8 @@ public class TextRecordConverterTest extends TestCase {
 	
 	RecordConverter converter = new TextRecordConverter(recordToFieldsDivider, fieldExtractor, subFieldExtractor, recordNameExtractor, recordLabelExtractor);
 	
+	@AfterEach
+	
 	protected void tearDown() throws Exception {
 		verify(recordToFieldsDivider);
 		verify(fieldExtractor);
@@ -40,23 +45,33 @@ public class TextRecordConverterTest extends TestCase {
 		verify(recordNameExtractor);
 	}
 	
+	@Test
+	
 	public void testGrantedInputIsEmptyThenThrowsRuntimeException() throws Exception {
 		assertConversionThrowsRuntimeExceptionWith("", "is empty.");
 	}
 
+	@Test
+
 	public void testGrantedInputIsNullThenThrowsRuntimeException() throws Exception {
 		assertConversionThrowsRuntimeExceptionWith(null, "is empty.");
 	}
+
+	@Test
 
 	public void testGrantedFieldDividerThrowsExceptionThenItsMessageIsAppendedToNewRuntimeException() throws Exception {
 		expect(recordToFieldsDivider.divideToFields(INPUT_WITHOUT_NEWLINE)).andThrow(new MarcFormatException(MESSAGE));
 		assertConversionThrowsRuntimeExceptionWith(INPUT_WITHOUT_NEWLINE, "is invalid: " + MESSAGE);
 	}
 
+	@Test
+
 	public void testGrantedFieldDividerReturnsEmptyCollectionThenThrowsExceptionWithMessageNoFields() throws Exception {
 		expect(recordToFieldsDivider.divideToFields(INPUT_WITHOUT_NEWLINE)).andReturn(fieldsAsStrings);
 		assertConversionThrowsRuntimeExceptionWith(INPUT_WITHOUT_NEWLINE, "has no fields.");
 	}
+	
+	@Test
 	
 	public void testGrantedFieldIdExtractorThrowsExceptionThenItsMessageIsAppendedToNewRuntimeException() throws Exception {
 	    fieldsAsStrings.add(FIELD_AS_STRING);
@@ -65,17 +80,23 @@ public class TextRecordConverterTest extends TestCase {
 		assertConversionThrowsRuntimeExceptionWith(INPUT_WITHOUT_NEWLINE, "is invalid: " + MESSAGE);
 	}
 
+	@Test
+
 	public void testGrantedSubFieldExtractorThrowsExceptionThenItsMessageIsAppendedToNewRuntimeException() throws Exception {
 	    expectFieldParsing();
 		expect(subFieldExtractor.parseSubFields(FIELD_AS_STRING)).andThrow(new MarcFormatException(MESSAGE));
 		assertConversionThrowsRuntimeExceptionWith(INPUT_WITHOUT_NEWLINE, "is invalid: " + MESSAGE);
 	}
 
+	@Test
+
 	public void testGrantedSubFieldExtractorReturnsNothingThenRuntimeExceptionIsThrown() throws Exception {
 	    expectFieldParsing();
 		expect(subFieldExtractor.parseSubFields(FIELD_AS_STRING)).andReturn(subFields);
 		assertConversionThrowsRuntimeExceptionWith(INPUT_WITHOUT_NEWLINE, "has field '" + FIELD_AS_STRING + "' without values.");
 	}
+
+	@Test
 
 	public void testGrantedSubFieldsExistThenTheyAreAddedToFieldAndFieldIsAddedToRecord() throws Exception {
 	    expectFieldParsing();

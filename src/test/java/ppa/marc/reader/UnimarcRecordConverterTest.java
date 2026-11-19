@@ -1,5 +1,9 @@
 package ppa.marc.reader;
 
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import static org.easymock.EasyMock.*;
 
 import java.util.ArrayList;
@@ -8,9 +12,8 @@ import java.util.List;
 import ppa.marc.reader.UnimarcRecordConverter;
 import ppa.marc.domain.Field;
 import ppa.marc.domain.Record;
-import junit.framework.TestCase;
 
-public class UnimarcRecordConverterTest extends TestCase {
+public class UnimarcRecordConverterTest {
 
 	private static final String LABEL = "label";
 	RecordSplitter recordSplitter = createStrictMock(RecordSplitter.class);
@@ -33,12 +36,16 @@ public class UnimarcRecordConverterTest extends TestCase {
 	
 	RecordConverter converter = new UnimarcRecordConverter(recordSplitter, directoryEntryParser, variableDataSplitter, fieldParser, identityExtractor);
 	
+	@BeforeEach
+	
 	protected void setUp() throws Exception {
-		directoryEntries.add(new Integer(0));
-		directoryEntries.add(new Integer(1));
+		directoryEntries.add(Integer.valueOf(0));
+		directoryEntries.add(Integer.valueOf(1));
 		fieldsAsStrings.add("");
 		fieldsAsStrings.add("");
 	}
+	
+	@Test
 	
 	public void testHappyPath() throws Exception {
 		happyPathExpectations();
