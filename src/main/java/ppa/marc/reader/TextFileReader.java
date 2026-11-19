@@ -7,21 +7,19 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Component;
 
 import ppa.marc.RecordReader;
 import ppa.marc.domain.Record;
 
 @Component("textFileReader")
+@RequiredArgsConstructor
 public class TextFileReader implements RecordReader {
 
 	private final TextRecordConverter recordConverter;
 	private final SpecialLineChecker commentLineChecker;
-
-	public TextFileReader(TextRecordConverter recordConverter, SpecialLineChecker commentLineChecker) {
-		this.recordConverter = recordConverter;
-		this.commentLineChecker = commentLineChecker;
-	}
 
 	public List<Record> read(InputStream inputStream) throws IOException {
 		return convertInputToRecords(new BufferedReader(new InputStreamReader(inputStream)));

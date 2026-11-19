@@ -1,5 +1,7 @@
 package ppa.marc.reader;
 
+import lombok.RequiredArgsConstructor;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
@@ -7,13 +9,10 @@ import ppa.marc.common.UnimarcConstants;
 import ppa.marc.domain.Field;
 
 @Component
+@RequiredArgsConstructor
 public class UnimarcFieldParser implements FieldParser {
 
 	private final SubFieldParser subFieldParser;
-
-	public UnimarcFieldParser(SubFieldParser subFieldParser) {
-		this.subFieldParser = subFieldParser;
-	}
 
 	public Field parseField(int id, String fieldAsString) {
 		if(fieldAsString.length() == 0) throw new IllegalArgumentException("Field is empty.");
