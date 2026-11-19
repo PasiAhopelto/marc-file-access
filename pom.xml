@@ -3,7 +3,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
   <modelVersion>4.0.0</modelVersion> 
   <groupId>ppa.marc</groupId> 
   <artifactId>marc-file-access</artifactId> 
-  <version>0.93</version> 
+  <version>0.94</version> 
   <name>Marc File Access</name> 
   <packaging>jar</packaging> 
   <properties>
