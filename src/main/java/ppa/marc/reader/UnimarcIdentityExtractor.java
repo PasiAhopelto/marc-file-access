@@ -2,7 +2,9 @@ package ppa.marc.reader;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
 
+@Component
 public class UnimarcIdentityExtractor implements IdentityExtractor {
 
 	public String getIdentity(List<String> fieldsAsStrings) {

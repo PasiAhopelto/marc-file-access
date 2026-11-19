@@ -37,7 +37,6 @@ public class UnimarcRecordConverterTest {
 	RecordConverter converter = new UnimarcRecordConverter(recordSplitter, directoryEntryParser, variableDataSplitter, fieldParser, identityExtractor);
 	
 	@BeforeEach
-	
 	protected void setUp() throws Exception {
 		directoryEntries.add(Integer.valueOf(0));
 		directoryEntries.add(Integer.valueOf(1));
@@ -46,7 +45,6 @@ public class UnimarcRecordConverterTest {
 	}
 	
 	@Test
-	
 	public void testHappyPath() throws Exception {
 		happyPathExpectations();
 		happyPathReplay();

@@ -2,6 +2,9 @@ package ppa.marc.reader;
 
 import java.util.regex.Pattern;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class SpecialLineChecker {
 
 	public boolean isCommentLine(String line) {

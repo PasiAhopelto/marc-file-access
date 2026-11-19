@@ -9,7 +9,6 @@ public class MarcFormatExceptionTest {
 	private static final String MESSAGE = "message";
 
 	@Test
-
 	public void testGrantedMessageIsPassedAsConstructorArgumentThenItIsReturnedAsMessage() throws Exception {
 		assertEquals(MESSAGE, new MarcFormatException(MESSAGE).getMessage());
 	}

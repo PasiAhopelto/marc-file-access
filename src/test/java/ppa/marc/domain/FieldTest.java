@@ -16,37 +16,31 @@ public class FieldTest {
 	};
 	
 	@Test
-	
 	public void testGrantedConstructedWithIndicatorsThenIsShownAsNonControlField() throws Exception {
 		assertFalse(field.isControlField());
 	}
 
 	@Test
-
 	public void testGrantedConstructedWithoutIndicatorsThenIsShownAsControlField() throws Exception {
 		assertTrue(new Field(ID).isControlField());
 	}
 	
 	@Test
-	
 	public void testIdentityCanBeGet() throws Exception {
 		assertEquals(ID, field.getId());
 	}
 	
 	@Test
-	
 	public void testIndicatorCanBeGet() throws Exception {
 		assertEquals(SECOND_INDICATOR, field.getSecondIndicator());
 	}
 
 	@Test
-
 	public void testSpaceIndicatorIsConvertedToUnderscore() throws Exception {
 		assertEquals(' ', field.getFirstIndicator());
 	}
 	
 	@Test
-	
 	public void testReferenceToSubFieldListIsAccessible() throws Exception {
 		SubField subField = new SubField('a', "value");
 		field.getSubFields().add(subField);
@@ -54,19 +48,16 @@ public class FieldTest {
 	}
 
 	@Test
-
 	public void testEquality() throws Exception {
 		assertEquals(new Field(100, '0', '1'), new Field(100, '0', '1'));
 	}
 
 	@Test
-
 	public void testEqualityWithoutIndicators() throws Exception {
 		assertEquals(new Field(100), new Field(100));
 	}
 
 	@Test
-
 	public void testToString() throws Exception {
 		field.getSubFields().add(subFields[0]);
 		field.getSubFields().add(subFields[1]);
@@ -74,7 +65,6 @@ public class FieldTest {
 	}
 	
 	@Test
-	
 	public void testToStringInCaseOfNoIndicators() throws Exception {
 		Field field = new Field(ID);
 		SubField subField = new SubField("data");
@@ -83,7 +73,6 @@ public class FieldTest {
 	}
 	
 	@Test
-	
 	public void testIdAndIndicatorsAreSettable() throws Exception {
 		Field otherField = new Field(900, '2', '3');
 		otherField.getSubFields().addAll(field.getSubFields());
@@ -94,7 +83,6 @@ public class FieldTest {
 	}
 	
 	@Test
-	
 	public void testIndicatorsAreSetToUnassignedIfUnset() throws Exception {
 		field = new Field(1);
 		assertTrue(Character.UNASSIGNED == field.getFirstIndicator());
@@ -102,7 +90,6 @@ public class FieldTest {
 	}
 
 	@Test
-
 	public void testGrantedControlFieldStatusIsSetThenGetterReturnsCorrectStatus() throws Exception {
 		field.setIsControlField(true);
 		assertTrue(field.isControlField);

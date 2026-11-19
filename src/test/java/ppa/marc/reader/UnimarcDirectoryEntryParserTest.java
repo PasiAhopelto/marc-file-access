@@ -17,13 +17,11 @@ public class UnimarcDirectoryEntryParserTest {
 	};
 	
 	@Test
-	
 	public void testReturnsEmptyListWhenNothingToParse() throws Exception {
 		assertEquals(0, parser.parseEntries("").size());
 	}
 	
 	@Test
-	
 	public void testThrowsExceptionWhenBlockIsTooShort() throws Exception {
 		try {
 			parser.parseEntries("70002000001");
@@ -34,7 +32,6 @@ public class UnimarcDirectoryEntryParserTest {
 	}
 	
 	@Test
-	
 	public void testParsesOneEntry() throws Exception {
 		List<Integer> entries = parser.parseEntries("700020000010");
 		assertEquals(1, entries.size());
@@ -42,7 +39,6 @@ public class UnimarcDirectoryEntryParserTest {
 	}
 	
 	@Test
-	
 	public void testParsesTwoEntries() throws Exception {
 		List<Integer> entries = parser.parseEntries("700020000010600030010000");
 		assertEquals(2, entries.size());

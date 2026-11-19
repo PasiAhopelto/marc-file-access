@@ -1,10 +1,12 @@
 package ppa.marc.reader;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
 
 import ppa.marc.common.UnimarcConstants;
 import ppa.marc.domain.Field;
 
+@Component
 public class UnimarcFieldParser implements FieldParser {
 
 	private final SubFieldParser subFieldParser;

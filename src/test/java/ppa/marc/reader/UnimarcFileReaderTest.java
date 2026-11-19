@@ -16,7 +16,7 @@ import static org.easymock.EasyMock.*;
 
 public class UnimarcFileReaderTest {
 
-	RecordConverter recordConverter = createStrictMock(RecordConverter.class);
+	UnimarcRecordConverter recordConverter = createStrictMock(UnimarcRecordConverter.class);
 	Record[] records = new Record[] {
 			new Record("id"),
 			new Record("id")
@@ -24,14 +24,12 @@ public class UnimarcFileReaderTest {
 	RecordReader fileReader = new UnimarcFileReader(recordConverter);
 	
 	@Test
-	
 	public void testReturnsEmptyListIfInputStreamIsEmpty() throws Exception {
 		List<Record> recordsAsStrings = fileReader.read(new ByteArrayInputStream(new byte[0]));
 		assertEquals(0, recordsAsStrings.size());
 	}
 	
 	@Test
-	
 	public void testReturnsTwoRecordsWithTrailingRecordTerminators() throws Exception {
 		expectTwoRecords();
 		List<Record> recordsAsStrings = fileReader.read(new ByteArrayInputStream(new byte[] { 'a', UnimarcConstants.RECORD_TERMINATOR, 'b', UnimarcConstants.RECORD_TERMINATOR }));

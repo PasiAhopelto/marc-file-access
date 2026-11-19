@@ -4,10 +4,13 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import ppa.marc.RecordWriter;
 import ppa.marc.common.UnimarcConstants;
 import ppa.marc.domain.Record;
 
+@Component("marcFileWriter")
 public class UnimarcRecordWriter implements RecordWriter {
 
 	static final byte[] DEFAULT_RECORD_LABEL = { 

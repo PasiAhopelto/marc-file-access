@@ -15,19 +15,16 @@ public class UnimarcRecordSplitterTest {
 	RecordSplitter splitter = new UnimarcRecordSplitter();
 	
 	@Test
-	
 	public void testReturnsDirectoryFieldsAsString() throws Exception {
 		assertEquals(DIRECTORY, splitter.extractDirectoryBlock(RECORD_LABEL + DIRECTORY + UnimarcConstants.FIELD_TERMINATOR + DATA + UnimarcConstants.FIELD_TERMINATOR + UnimarcConstants.RECORD_TERMINATOR));
 	}
 
 	@Test
-
 	public void testReturnsDataFieldsAsString() throws Exception {
 		assertEquals(DATA, splitter.extractFieldBlock(RECORD_LABEL + DIRECTORY + UnimarcConstants.FIELD_TERMINATOR + DATA + UnimarcConstants.FIELD_TERMINATOR + UnimarcConstants.RECORD_TERMINATOR));
 	}
 	
 	@Test
-	
 	public void testGrantedRecordIsNotEmptyThenReturnsFirstTwentyFourCharactersAsRecordLabel() throws Exception {
 		assertEquals(RECORD_LABEL, splitter.extractRecordLabel(RECORD_LABEL + DIRECTORY + UnimarcConstants.FIELD_TERMINATOR + DATA + UnimarcConstants.FIELD_TERMINATOR + UnimarcConstants.RECORD_TERMINATOR));
 	}

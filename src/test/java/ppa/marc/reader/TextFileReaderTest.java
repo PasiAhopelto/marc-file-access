@@ -23,21 +23,19 @@ public class TextFileReaderTest {
 	private static final Record RECORD = new Record("");
 
 	SpecialLineChecker specialLineChecker = createStrictMock(SpecialLineChecker.class);
-	RecordConverter recordConverter = createStrictMock(RecordConverter.class);
+	TextRecordConverter recordConverter = createStrictMock(TextRecordConverter.class);
 
 	RecordReader reader = new TextFileReader(recordConverter, specialLineChecker);
 	
 	List<Record> expectedRecords = new ArrayList<Record>();
 	
 	@AfterEach
-	
 	protected void tearDown() throws Exception {
 		verify(recordConverter);
 		verify(specialLineChecker);
 	}
 	
 	@Test
-	
 	public void testGrantedTheresNothingToReadThenReturnsEmptyCollection() throws Exception {
 		InputStream inputStream = createInputStreamFrom(new String[] { "" });
 		replayMocks();
@@ -45,25 +43,21 @@ public class TextFileReaderTest {
 	}
 
 	@Test
-
 	public void testGrantedThereAreNoEmptyLinesThenPassesEverythingToRecordConverterAndAddsResultToList() throws Exception {
 		assertSingleRecordReadingWithInput(new String[] { SINGLE_LINE });
 	}
 
 	@Test
-
 	public void testGrantedEmptyLinePreceedsRecordThenDropsTheLineBeforePassingItToConverter() throws Exception {
 		assertSingleRecordReadingWithInput(new String[] { "", SINGLE_LINE });
 	}
 
 	@Test
-
 	public void testInputHasLineThatStartsWithHashThenItIsIgnored() throws Exception {
 		assertSingleRecordReadingWithInput(new String[] { "#", SINGLE_LINE });
 	}
 	
 	@Test
-	
 	public void testGrantedEmptyLineSeparatesTextBlocksThenDropsTheLineAndHandlesTheBlocksAsTwoRecords() throws Exception {
 		expectSingleRecord(SINGLE_LINE);
 		expectSingleRecord(SINGLE_LINE);
@@ -73,7 +67,6 @@ public class TextFileReaderTest {
 	}
 
 	@Test
-
 	public void testGrantedSpaceLineSeparatesTextBlocksThenDropsTheLineAndHandlesTheBlocksAsTwoRecords() throws Exception {
 		expectSingleRecord(SINGLE_LINE);
 		expectSingleRecord(SINGLE_LINE);
@@ -83,7 +76,6 @@ public class TextFileReaderTest {
 	}
 
 	@Test
-
 	public void testGrantedInputHasTwoNonEmptyLinesThenParsesItToOneRecord() throws Exception {
 		expectSingleRecord(TWO_LINES);
 		for(int i = 0; i < 2; ++i) {

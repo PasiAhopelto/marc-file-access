@@ -11,7 +11,6 @@ public class UnimarcSubFieldParserTest {
 	SubFieldParser parser = new UnimarcSubFieldParser();
 	
 	@Test
-	
 	public void testThrowsExceptionIfEmptyField() throws Exception {
 		try {
 			parser.parse("", false);
@@ -22,14 +21,12 @@ public class UnimarcSubFieldParserTest {
 	}
 	
 	@Test
-	
 	public void testExtractsDataOfZeroZeroField() throws Exception {
 		SubField expectedSubField = new SubField("data");
 		assertEquals(expectedSubField, parser.parse("data", true));
 	}
 
 	@Test
-
 	public void testExtractsDataAndId() throws Exception {
 		SubField expectedSubField = new SubField('a', "data");
 		assertEquals(expectedSubField, parser.parse("adata", false));

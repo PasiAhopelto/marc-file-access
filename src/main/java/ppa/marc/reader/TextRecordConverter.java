@@ -1,8 +1,11 @@
 package ppa.marc.reader;
 
+import org.springframework.stereotype.Component;
+
 import ppa.marc.domain.Field;
 import ppa.marc.domain.Record;
 
+@Component
 public class TextRecordConverter implements RecordConverter {
 	private final RecordToFieldsDivider recordToFieldsDivider;
 	private final BaseFieldExtractor fieldIdAndIndicatorExtractor;
