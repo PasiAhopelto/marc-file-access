@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Component;
 
 import ppa.marc.RecordWriter;
@@ -11,6 +13,7 @@ import ppa.marc.common.UnimarcConstants;
 import ppa.marc.domain.Record;
 
 @Component("marcFileWriter")
+@RequiredArgsConstructor
 public class UnimarcRecordWriter implements RecordWriter {
 
 	static final byte[] DEFAULT_RECORD_LABEL = { 
@@ -21,11 +24,6 @@ public class UnimarcRecordWriter implements RecordWriter {
 
 	private final DirectoryWriter directoryWriter;
 	private final DataFieldsWriter dataFieldsWriter;
-
-	public UnimarcRecordWriter(DirectoryWriter directoryWriter, DataFieldsWriter dataFieldsWriter) {
-		this.directoryWriter = directoryWriter;
-		this.dataFieldsWriter = dataFieldsWriter;
-	}
 
 	public void writeRecords(OutputStream outputStream, List<Record> records) throws IOException {
 		for(Record record : records) {

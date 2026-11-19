@@ -1,25 +1,20 @@
 package ppa.marc.reader;
 
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Component;
 
 import ppa.marc.domain.Field;
 import ppa.marc.domain.Record;
 
 @Component
+@RequiredArgsConstructor
 public class TextRecordConverter implements RecordConverter {
 	private final RecordToFieldsDivider recordToFieldsDivider;
 	private final BaseFieldExtractor fieldIdAndIndicatorExtractor;
 	private final SubFieldExtractor subFieldExtractor;
 	private final FromFieldIdentityExtractor recordNameExtractor;
 	private final FromFieldIdentityExtractor recordLabelExtractor;
-
-	public TextRecordConverter(RecordToFieldsDivider recordToFieldsDivider, BaseFieldExtractor fieldIdAndIndicatorExtractor, SubFieldExtractor subFieldExtractor, FromFieldIdentityExtractor recordNameExtractor, FromFieldIdentityExtractor recordLabelExtractor) {
-		this.recordToFieldsDivider = recordToFieldsDivider;
-		this.fieldIdAndIndicatorExtractor = fieldIdAndIndicatorExtractor;
-		this.subFieldExtractor = subFieldExtractor;
-		this.recordNameExtractor = recordNameExtractor;
-		this.recordLabelExtractor = recordLabelExtractor;
-	}
 
 	public Record convert(String input) {
 		Record record = new Record(null);

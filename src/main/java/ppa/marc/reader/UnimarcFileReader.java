@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Component;
 
 import ppa.marc.RecordReader;
@@ -12,13 +14,10 @@ import ppa.marc.common.UnimarcConstants;
 import ppa.marc.domain.Record;
 
 @Component("marcFileReader")
+@RequiredArgsConstructor
 public class UnimarcFileReader implements RecordReader {
 
 	private final UnimarcRecordConverter recordConverter;
-
-	public UnimarcFileReader(UnimarcRecordConverter recordConverter) {
-		this.recordConverter = recordConverter;
-	}
 
 	public List<Record> read(InputStream input) throws IOException {
 		List<Record> records = new ArrayList<Record>();

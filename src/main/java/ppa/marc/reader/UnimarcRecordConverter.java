@@ -2,11 +2,14 @@ package ppa.marc.reader;
 
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Component;
 
 import ppa.marc.domain.Record;
 
 @Component
+@RequiredArgsConstructor
 public class UnimarcRecordConverter implements RecordConverter {
 
 	private final RecordSplitter recordSplitter;
@@ -14,14 +17,6 @@ public class UnimarcRecordConverter implements RecordConverter {
 	private final VariableDataSplitter variableDataSplitter;
 	private final FieldParser fieldParser;
 	private final IdentityExtractor identityExtractor;
-
-	public UnimarcRecordConverter(RecordSplitter recordSplitter, DirectoryEntryParser directoryEntryParser, VariableDataSplitter variableDataSplitter, FieldParser fieldParser, IdentityExtractor identityExtractor) {
-		this.recordSplitter = recordSplitter;
-		this.directoryEntryParser = directoryEntryParser;
-		this.variableDataSplitter = variableDataSplitter;
-		this.fieldParser = fieldParser;
-		this.identityExtractor = identityExtractor;
-	}
 
 	public Record convert(String input) {
 		String recordLabel = recordSplitter.extractRecordLabel(input);
