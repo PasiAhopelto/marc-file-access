@@ -23,13 +23,11 @@ public class UnimarcDirectoryWriterTest {
 	ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
 	@BeforeEach
-
 	protected void setUp() throws Exception {
 		record.getFields().add(field);
 	}
 	
 	@Test
-	
 	public void testGrantedRecordHasNoFieldsThenWritesFieldTerminator() throws Exception {
 		record.getFields().clear();
 		directoryWriter.writeDirectoryEntries(outputStream, record);
@@ -37,21 +35,18 @@ public class UnimarcDirectoryWriterTest {
 	}
 
 	@Test
-
 	public void testGrantedRecordHasSingleFieldThenWritesThreeDigitTagFirst() throws Exception {
 		directoryWriter.writeDirectoryEntries(outputStream, record);
 		assertEquals("010", getTagOfField(1));
 	}
 	
 	@Test
-	
 	public void testGrantedDataIsFourCharactersLongAndNoIndicatorsThenLengthIs0005() throws Exception {
 		addSubFieldsToBothFields(1);
 		assertWriteProducesDataLengthOf("0005");
 	}
 
 	@Test
-
 	public void testGrantedDataIsFourCharactersLongWithIndicatorsThenLengthIs0007() throws Exception {
 		addIndicatorsToField();
 		addSubFieldsToBothFields(1);
@@ -59,7 +54,6 @@ public class UnimarcDirectoryWriterTest {
 	}
 
 	@Test
-
 	public void testGrantedTwoSubFieldsWithFourCharacterDataWithIndicatorsThenLengthIs0011() throws Exception {
 		addIndicatorsToField();
 		addSubFieldsToBothFields(2);
@@ -67,14 +61,12 @@ public class UnimarcDirectoryWriterTest {
 	}
 
 	@Test
-
 	public void testGrantedFieldIsFirstThenItsStartingPositionIs00000() throws Exception {
 		directoryWriter.writeDirectoryEntries(outputStream, record);
 		assertEquals("00000", getStartingPositionOfField(1));
 	}
 
 	@Test
-
 	public void testGrantedSubFieldHasIdThenItIncreasesLengthByTwo() throws Exception {
 		addSubFieldsToBothFields(1);
 		subField.setId('a');
@@ -82,7 +74,6 @@ public class UnimarcDirectoryWriterTest {
 	}
 
 	@Test
-
 	public void testGrantedThereAreTwoFieldsThenSecondAlsoHasTagLengtAndStartingPosition() throws Exception {
 		addSubFieldsToBothFields(1);
 		record.getFields().add(otherField);
@@ -93,7 +84,6 @@ public class UnimarcDirectoryWriterTest {
 	}
 
 	@Test
-
 	public void testGrantedDirectoryIsWrittenThenItIsFollowedByFieldTerminator() throws Exception {
 		directoryWriter.writeDirectoryEntries(outputStream, record);
 		assertEquals(UnimarcConstants.FIELD_TERMINATOR, getLastCharacterOf(outputStream));

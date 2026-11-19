@@ -17,19 +17,16 @@ public class UnimarcVariableDataSplitterTest {
 	List<Integer> directoryEntries = new ArrayList<Integer>();
 	
 	@BeforeEach
-	
 	protected void setUp() throws Exception {
 		directoryEntries.add(Integer.valueOf(700));
 	}
 	
 	@Test
-	
 	public void testReturnsEmptyCollectionIfNoDirectoryEntries() throws Exception {
 		assertEquals(0, splitter.split(new ArrayList<Integer>(), "").size());
 	}
 	
 	@Test
-	
 	public void testThrowsExceptionWithDirectoryEntryButNoData() throws Exception {
 		try {
 			splitter.split(directoryEntries, "");
@@ -40,7 +37,6 @@ public class UnimarcVariableDataSplitterTest {
 	}
 
 	@Test
-
 	public void testReturnsOneEntry() throws Exception {
 		List<String> dataAsStrings = splitter.split(directoryEntries, "x" + UnimarcConstants.FIELD_TERMINATOR);
 		assertEquals(1, dataAsStrings.size());
@@ -48,7 +44,6 @@ public class UnimarcVariableDataSplitterTest {
 	}
 
 	@Test
-
 	public void testReturnsTwoEntries() throws Exception {
 		directoryEntries.add(Integer.valueOf(800));
 		List<String> dataAsStrings = splitter.split(directoryEntries, "x" + UnimarcConstants.FIELD_TERMINATOR + "xx" + UnimarcConstants.FIELD_TERMINATOR);

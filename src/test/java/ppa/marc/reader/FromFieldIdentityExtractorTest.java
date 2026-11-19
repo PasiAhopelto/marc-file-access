@@ -19,33 +19,28 @@ public class FromFieldIdentityExtractorTest {
 	private static Field ID_FIELD = new Field(1);
 	
 	@BeforeEach
-	
 	protected void setUp() throws Exception {
 		ID_FIELD.getSubFields().clear();
 	}
 	
 	@Test
-	
 	public void testGrantedIdentityFieldIsMissingThenThrowsMarcFormatException() throws Exception {
 		expectExceptionWithMessage("Record does not have a record identifying field.");
 	}
 
 	@Test
-
 	public void testGrantedIdentityFieldIsNullThenThrowsMarcFormatException() throws Exception {
 		addIdentityField(null);
 		expectExceptionWithMessage("Identifying field " + ID_FIELD + " has null value.");
 	}
 
 	@Test
-
 	public void testGrantedOneField001ThenItsValueIsReturnedAsId() throws Exception {
 		addIdentityField(IDENTITY);
 		assertEquals(IDENTITY, extractor.extractIdentity(fields));
 	}
 
 	@Test
-
 	public void testGrantedOneField001WithAnotherFieldThen001ValueIsReturnedAsId() throws Exception {
 		addOtherField();
 		addIdentityField(IDENTITY);
@@ -53,7 +48,6 @@ public class FromFieldIdentityExtractorTest {
 	}
 
 	@Test
-
 	public void testGrantedTwoFields001ThenExceptionIsThrown() throws Exception {
 		addIdentityField(IDENTITY);
 		addIdentityField(IDENTITY);

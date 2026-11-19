@@ -3,8 +3,11 @@ package ppa.marc.reader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.springframework.stereotype.Component;
+
 import ppa.marc.domain.Field;
 
+@Component
 public class BaseFieldExtractor {
 
 	private static final String IDENTIFIER = "(\\d{3,3})";

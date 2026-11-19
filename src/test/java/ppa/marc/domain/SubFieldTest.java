@@ -11,40 +11,34 @@ public class SubFieldTest {
 	SubField subField = new SubField(ID, VALUE);
 
 	@Test
-
 	public void testIdentityCanBeGet() throws Exception {
 		assertEquals(Character.valueOf(ID), subField.getId());
 	}
 	
 	@Test
-	
 	public void testValueCanBeGet() throws Exception {
 		assertEquals(VALUE, subField.getValue());
 	}
 
 	@Test
-
 	public void testEquality() throws Exception {
 		SubField other = new SubField('a', "value");
 		assertEquals(other, subField);
 	}
 
 	@Test
-
 	public void testHashCode() throws Exception {
 		SubField other = new SubField('a', "value");
 		assertEquals(other.hashCode(), subField.hashCode());
 	}
 	
 	@Test
-	
 	public void testToString() throws Exception {
 		assertEquals("|a data", new SubField('a', "data").toString());
 		assertEquals("data", new SubField("data").toString());
 	}
 
 	@Test
-
 	public void testFieldsAreSettable() throws Exception {
 		subField.setId('x');
 		subField.setValue("atad");
@@ -52,7 +46,6 @@ public class SubFieldTest {
 	}
 
 	@Test
-
 	public void testIdIsSetToUnassignedIfUnset() throws Exception {
 		assertTrue(Character.UNASSIGNED == new SubField("value").getId());
 	}

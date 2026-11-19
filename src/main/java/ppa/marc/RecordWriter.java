@@ -8,14 +8,16 @@ import ppa.marc.domain.Record;
 
 /**
  * Interface for writing UNIMARC records.  The writer is instantiated with
- * Spring Framework, after which records can be written to a file.  For
+ * Spring Framework (see {@link MarcFileAccessConfiguration}), after which records can be written to a file.  For
  * example binary MARC record writer:
  * <pre>
- * RecordWriter recordWriter = (RecordWriter) new ClassPathXmlApplicationContext(RecordWriter.class.getName() + ".xml").getBean("marcFileWriter");
- * recordWriter.write(new FileOutputStream("output.marc"), records);
+ * RecordWriter recordWriter = new AnnotationConfigApplicationContext(MarcFileAccessConfiguration.class).getBean("marcFileWriter", RecordWriter.class);
+ * recordWriter.writeRecords(new FileOutputStream("output.marc"), records);
  * </pre>
- * Alternatively textual MARC record writer can be instantiated by using "testFileWriter" as bean's name.
+ * Alternatively textual MARC record writer can be instantiated by using "textFileWriter" as bean's name.
  * Note that the textual format is not from a MARC standard.
+ * The XML context file ppa.marc.RecordWriter.xml is still provided for
+ * XML-based application contexts.
  * @see ppa.marc.domain
  */
 public interface RecordWriter {

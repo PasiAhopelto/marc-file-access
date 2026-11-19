@@ -1,9 +1,11 @@
 package ppa.marc.reader;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
 
 import ppa.marc.common.UnimarcConstants;
 
+@Component
 public class UnimarcRecordSplitter implements RecordSplitter {
 
 	public String extractDirectoryBlock(String recordAsString) {

@@ -5,8 +5,11 @@ import java.util.List;
 
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Component;
+
 import ppa.marc.domain.Field;
 
+@Component
 public class FromFieldIdentityExtractor {
 
 	private static int ID_FIELD_ID = 1;

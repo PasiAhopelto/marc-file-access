@@ -3,11 +3,14 @@ package ppa.marc.writer;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import org.springframework.stereotype.Component;
+
 import ppa.marc.common.UnimarcConstants;
 import ppa.marc.domain.Field;
 import ppa.marc.domain.Record;
 import ppa.marc.domain.SubField;
 
+@Component
 public class UnimarcDataFieldsWriter implements DataFieldsWriter {
 
 	public void writeDataFields(OutputStream outputStream, Record record) throws IOException {

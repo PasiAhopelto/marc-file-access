@@ -49,28 +49,24 @@ public class RecordAccessLibraryTest {
 	private Record record;
 	
 	@AfterEach
-	
 	protected void tearDown() throws Exception {
 		verify(recordReader);
 		verify(recordWriter);
 	}
 	
 	@Test
-	
 	public void testGrantedInputFileDoesNotExistThenThrowsFileNotFoundException() throws Exception {
 		inputFileExists = false;
 		assertReadAndPrintFails();
 	}
 
 	@Test
-
 	public void testGrantedReaderFailsThenExceptionGetsThrown() throws Exception {
 		expect(recordReader.read(inputStream)).andThrow(new IOException());
 		assertReadAndPrintFails();
 	}
 
 	@Test
-
 	public void testGrantedWriterFailsThenExceptionGetsThrown() throws Exception {
 		expect(recordReader.read(inputStream)).andReturn(records);
 		recordWriter.writeRecords(isA(OutputStream.class), eq(records));
@@ -79,7 +75,6 @@ public class RecordAccessLibraryTest {
 	}
 
 	@Test
-
 	public void testGrantedWritingSucceedsThenListReturnedByReaderIsPassedToWriter() throws Exception {
 		expect(recordReader.read(inputStream)).andReturn(records);
 		recordWriter.writeRecords(isA(OutputStream.class), eq(records));
@@ -88,7 +83,6 @@ public class RecordAccessLibraryTest {
 	}
 
 	@Test
-
 	public void testGrantedRecordIsPrintedAsTextThenToStringOfRecordIsUsed() throws Exception {
 		String recordsAsString = addRecords(1);
 		expect(recordReader.read(inputStream)).andReturn(records);
@@ -97,7 +91,6 @@ public class RecordAccessLibraryTest {
 	}
 
 	@Test
-
 	public void testGrantedTwoRecordsArePrintedAsTextThenToStringOutputsAreConcatenated() throws Exception {
 		String recordsAsString = addRecords(2);
 		expect(recordReader.read(inputStream)).andReturn(records);

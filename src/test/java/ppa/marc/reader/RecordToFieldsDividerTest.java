@@ -17,26 +17,22 @@ public class RecordToFieldsDividerTest {
 	List<String> expectedFields = new ArrayList<String>();
 	
 	@Test
-	
 	public void testGrantedInputIsEmptyThenThrowsMarcFormatException() throws Exception {
 		assertFailsWithInput("", "contains empty line.");
 	}
 
 	@Test
-
 	public void testGrantedInputContainsOnlySpacesThenThrowsMarcFormatException() throws Exception {
 		assertFailsWithInput(" \t", "could not be divided into fields.");
 	}
 
 	@Test
-
 	public void testGrantedInputContainsControlFieldThenReturnsItAsString() throws Exception {
 		expectedFields.add(CONTROL_FIELD);
 		assertEquals(expectedFields, divider.divideToFields(CONTROL_FIELD));
 	}
 
 	@Test
-
 	public void testGrantedInputContainsTwoControlFieldsThenReturnsThemAsStrings() throws Exception {
 		expectedFields.add(CONTROL_FIELD);
 		expectedFields.add(CONTROL_FIELD);
@@ -44,20 +40,17 @@ public class RecordToFieldsDividerTest {
 	}
 
 	@Test
-
 	public void testGrantedInputContainsEmptyLineThenThrowsException() throws Exception {
 		assertFailsWithInput(CONTROL_FIELD + "\n\n", "contains empty line.");
 	}
 	
 	@Test
-	
 	public void testGrantedInputContainsSingleDataFieldThenReturnsItAsString() throws Exception {
 		expectedFields.add(DATA_FIELD);
 		assertEquals(expectedFields, divider.divideToFields(DATA_FIELD));
 	}
 
 	@Test
-
 	public void testGrantedInputContainsTwoDataFieldsThenReturnsThemAsStrings() throws Exception {
 		expectedFields.add(DATA_FIELD);
 		expectedFields.add(DATA_FIELD);
@@ -65,14 +58,12 @@ public class RecordToFieldsDividerTest {
 	}
 
 	@Test
-
 	public void testGrantedInputContainsMultilineDataFieldThenReturnsItAsString() throws Exception {
 		expectedFields.add(MULTILINE_DATA_FIELD);
 		assertEquals(expectedFields, divider.divideToFields(MULTILINE_DATA_FIELD));
 	}
 
 	@Test
-
 	public void testGrantedInputContainsMultilineDataFieldsThenReturnsThemAsStrings() throws Exception {
 		expectedFields.add(MULTILINE_DATA_FIELD);
 		expectedFields.add(MULTILINE_DATA_FIELD);
@@ -80,14 +71,12 @@ public class RecordToFieldsDividerTest {
 	}
 
 	@Test
-
 	public void testGrantedInputContainsFieldWithoutValueThenReturnsStringWithFieldIdButNoValue() throws Exception {
 		expectedFields.add(DATA_FIELD_WITHOUT_VALUE);
 		assertEquals(expectedFields, divider.divideToFields(DATA_FIELD_WITHOUT_VALUE));
 	}
 
 	@Test
-
 	public void testGrantedInputContainsFieldsWithoutValueThenReturnsThemAsStringsWithFieldIdsButNoValues() throws Exception {
 		expectedFields.add(DATA_FIELD_WITHOUT_VALUE);
 		expectedFields.add(DATA_FIELD_WITHOUT_VALUE);
@@ -95,7 +84,6 @@ public class RecordToFieldsDividerTest {
 	}
 
 	@Test
-
 	public void testGrantedInputContainsAllDifferentFieldTypesThenReturnsThemAsStrings() throws Exception {
 		expectedFields.add(DATA_FIELD);
 		expectedFields.add(CONTROL_FIELD);

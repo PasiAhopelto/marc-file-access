@@ -30,14 +30,12 @@ public class UnimarcRecordWriterTest {
 	List<Record> records = new ArrayList<Record>();
 
 	@AfterEach
-
 	protected void tearDown() throws Exception {
 		verify(directoryWriter);
 		verify(dataFieldsWriter);
 	}
 
 	@Test
-
 	public void testGrantedStreamWorksThenWritesTwentyFourBytesAndDirectoryAndDataFieldsAndRecordTerminator() throws Exception {
 		expectRecords(1);
 		replayMocks();
@@ -46,7 +44,6 @@ public class UnimarcRecordWriterTest {
 	}
 
 	@Test
-
 	public void testGrantedStreamWorksThenWritesTwoRecords() throws Exception {
 		expectRecords(2);
 		replayMocks();
@@ -55,7 +52,6 @@ public class UnimarcRecordWriterTest {
 	}
 	
 	@Test
-	
 	public void testGrantedRecordHasLabelThenItIsUsedInsteadOfDefault() throws Exception {
 		record.setLabel(LABEL);
 		expectedRecordLabel = LABEL.getBytes();

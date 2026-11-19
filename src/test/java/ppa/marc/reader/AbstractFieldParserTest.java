@@ -14,7 +14,6 @@ abstract public class AbstractFieldParserTest {
 	FieldParser parser = createFieldParser(subFieldParser);
 
 	@AfterEach
-
 	protected void tearDown() throws Exception {
 		verify(subFieldParser);
 	}
@@ -22,7 +21,6 @@ abstract public class AbstractFieldParserTest {
 	protected abstract FieldParser createFieldParser(SubFieldParser subFieldParser);
 
 	@Test
-
 	public void testThrowsExceptionWithEmptyInput() throws Exception {
 		replay(subFieldParser);
 		try {
@@ -34,7 +32,6 @@ abstract public class AbstractFieldParserTest {
 	}
 	
 	@Test
-	
 	public void testGivesZeroZeroSubFieldToSubFieldParser() throws Exception {
 		Field expectedField = new Field(1);
 		addExpectedSubField(new SubField("data"), expectedField, "data", true);

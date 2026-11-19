@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.springframework.stereotype.Component;
+
 import ppa.marc.domain.SubField;
 
+@Component
 public class SubFieldExtractor {
 	private static final String FIELDS_AND_SUBFIELDS = "\\d+(.[\\d_]{2}){0,1}\\s+(.+)";
 	private static final String SUBFIELD = "\\s*(\\|(\\p{Alnum}) {0,1}){0,1}(.*?)";

@@ -1,7 +1,10 @@
 package ppa.marc.reader;
 
+import org.springframework.stereotype.Component;
+
 import ppa.marc.domain.SubField;
 
+@Component
 public class UnimarcSubFieldParser implements SubFieldParser {
 
 	public SubField parse(String subFieldAsString, boolean isZeroZeroField) {

@@ -14,28 +14,24 @@ public class UnimarcIdentityExtractorTest {
 	List<String> fieldsAsStrings = new ArrayList<String>();
 	
 	@Test
-	
 	public void testReturnsContentOfFirstField() throws Exception {
 		fieldsAsStrings.add("data");
 		assertEquals("data", extractor.getIdentity(fieldsAsStrings));
 	}
 	
 	@Test
-	
 	public void testRemovesIndicatorsIfPresentInFirstField() throws Exception {
 		fieldsAsStrings.add("__ data");
 		assertEquals("data", extractor.getIdentity(fieldsAsStrings));
 	}
 
 	@Test
-
 	public void testDoesNotRemoveDoubleUnderscoreThatIsPartOfValue() throws Exception {
 		fieldsAsStrings.add("data __ data");
 		assertEquals("data __ data", extractor.getIdentity(fieldsAsStrings));
 	}
 
 	@Test
-
 	public void testRemoveDoubleUnderscoreThatHasTabInsteadOfSpace() throws Exception {
 		fieldsAsStrings.add("__\tdata");
 		assertEquals("data", extractor.getIdentity(fieldsAsStrings));
