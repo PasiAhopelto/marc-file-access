@@ -2,8 +2,11 @@ package ppa.marc.reader;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import ppa.marc.domain.Record;
 
+@Component
 public class UnimarcRecordConverter implements RecordConverter {
 
 	private final RecordSplitter recordSplitter;

@@ -19,43 +19,36 @@ public class BaseFieldExtractorTest {
 	BaseFieldExtractor extractor = new BaseFieldExtractor();
 	
 	@Test
-	
 	public void testGrantedInputIsNullThenThrowsMarcFormatException() throws Exception {
 		assertThrowsMarcFormatException(null, "Field is null.");
 	}
 
 	@Test
-
 	public void testGrantedInputIsEmptyThenThrowsMarcFormatException() throws Exception {
 		assertThrowsMarcFormatException("", "Field is empty.");
 	}
 	
 	@Test
-	
 	public void testGrantedFieldDoesNotHaveThreeDigitsFirstThenMarcFormatExceptionIsThrown() throws Exception {
 		assertThrowsMarcFormatException(FOUR_DIGIT_ID, "Field '" + FOUR_DIGIT_ID + "' is not valid.");
 	}
 
 	@Test
-
 	public void testGrantedFieldHasThreeDigitsThenReturnsFieldWithTheDigitsAsId() throws Exception {
 		assertEquals(ID_ONLY_FIELD, extractor.parseBaseField(ID_ONLY_FIELD_AS_STRING));
 	}
 
 	@Test
-
 	public void testGrantedFieldIsFollowedBySpaceThenReturnsFieldWithTheDigitsAsId() throws Exception {
 		assertEquals(ID_ONLY_FIELD, extractor.parseBaseField(ID_AND_VALUE_AS_STRING));
 	}
 
 	@Test
-
 	public void testGrantedFieldHasIdFollowedBySpaceAndInvalidIndicatorsThenMarcFormatExceptionIsThrown() throws Exception {
 		assertThrowsMarcFormatException(INVALID_INDICATORS, "Field '" + INVALID_INDICATORS + "' is not valid.");
 	}
 
 	@Test
-
 	public void testGrantedFieldIsFollowedByDotAndIndicatorsThenReturnsFieldWithIdAndIndicators() throws Exception {
 		assertEquals(FIELD_WITH_INDICATORS, extractor.parseBaseField(FIELD_WITH_INDICATORS_AS_STRING));
 	}

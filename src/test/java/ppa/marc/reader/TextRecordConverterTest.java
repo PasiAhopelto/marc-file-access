@@ -36,7 +36,6 @@ public class TextRecordConverterTest {
 	RecordConverter converter = new TextRecordConverter(recordToFieldsDivider, fieldExtractor, subFieldExtractor, recordNameExtractor, recordLabelExtractor);
 	
 	@AfterEach
-	
 	protected void tearDown() throws Exception {
 		verify(recordToFieldsDivider);
 		verify(fieldExtractor);
@@ -46,33 +45,28 @@ public class TextRecordConverterTest {
 	}
 	
 	@Test
-	
 	public void testGrantedInputIsEmptyThenThrowsRuntimeException() throws Exception {
 		assertConversionThrowsRuntimeExceptionWith("", "is empty.");
 	}
 
 	@Test
-
 	public void testGrantedInputIsNullThenThrowsRuntimeException() throws Exception {
 		assertConversionThrowsRuntimeExceptionWith(null, "is empty.");
 	}
 
 	@Test
-
 	public void testGrantedFieldDividerThrowsExceptionThenItsMessageIsAppendedToNewRuntimeException() throws Exception {
 		expect(recordToFieldsDivider.divideToFields(INPUT_WITHOUT_NEWLINE)).andThrow(new MarcFormatException(MESSAGE));
 		assertConversionThrowsRuntimeExceptionWith(INPUT_WITHOUT_NEWLINE, "is invalid: " + MESSAGE);
 	}
 
 	@Test
-
 	public void testGrantedFieldDividerReturnsEmptyCollectionThenThrowsExceptionWithMessageNoFields() throws Exception {
 		expect(recordToFieldsDivider.divideToFields(INPUT_WITHOUT_NEWLINE)).andReturn(fieldsAsStrings);
 		assertConversionThrowsRuntimeExceptionWith(INPUT_WITHOUT_NEWLINE, "has no fields.");
 	}
 	
 	@Test
-	
 	public void testGrantedFieldIdExtractorThrowsExceptionThenItsMessageIsAppendedToNewRuntimeException() throws Exception {
 	    fieldsAsStrings.add(FIELD_AS_STRING);
 		expect(recordToFieldsDivider.divideToFields(INPUT_WITHOUT_NEWLINE)).andReturn(fieldsAsStrings);
@@ -81,7 +75,6 @@ public class TextRecordConverterTest {
 	}
 
 	@Test
-
 	public void testGrantedSubFieldExtractorThrowsExceptionThenItsMessageIsAppendedToNewRuntimeException() throws Exception {
 	    expectFieldParsing();
 		expect(subFieldExtractor.parseSubFields(FIELD_AS_STRING)).andThrow(new MarcFormatException(MESSAGE));
@@ -89,7 +82,6 @@ public class TextRecordConverterTest {
 	}
 
 	@Test
-
 	public void testGrantedSubFieldExtractorReturnsNothingThenRuntimeExceptionIsThrown() throws Exception {
 	    expectFieldParsing();
 		expect(subFieldExtractor.parseSubFields(FIELD_AS_STRING)).andReturn(subFields);
@@ -97,7 +89,6 @@ public class TextRecordConverterTest {
 	}
 
 	@Test
-
 	public void testGrantedSubFieldsExistThenTheyAreAddedToFieldAndFieldIsAddedToRecord() throws Exception {
 	    expectFieldParsing();
 	    subFields.add(SUBFIELD);

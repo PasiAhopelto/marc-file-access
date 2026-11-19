@@ -4,9 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
 
 import ppa.marc.common.UnimarcConstants;
 
+@Component
 public class UnimarcVariableDataSplitter implements VariableDataSplitter {
 
 	public List<String> split(List<Integer> fieldIdentifiers, String dataFieldsWithoutEndOfRecordIndicator) {

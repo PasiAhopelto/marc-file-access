@@ -8,8 +8,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import ppa.marc.MarcFileAccessConfiguration;
 import ppa.marc.RecordReader;
 import ppa.marc.RecordWriter;
 import ppa.marc.domain.Record;
@@ -20,8 +22,9 @@ public class RecordAccessLibrary {
 	private RecordWriter recordWriter;
 
 	public RecordAccessLibrary(String readerBeanName, String writerBeanName) {
-		recordReader = (RecordReader) new ClassPathXmlApplicationContext(RecordReader.class.getName() + ".xml").getBean(readerBeanName);
-		recordWriter = (RecordWriter) new ClassPathXmlApplicationContext(RecordWriter.class.getName() + ".xml").getBean(writerBeanName);
+		ApplicationContext context = new AnnotationConfigApplicationContext(MarcFileAccessConfiguration.class);
+		recordReader = context.getBean(readerBeanName, RecordReader.class);
+		recordWriter = context.getBean(writerBeanName, RecordWriter.class);
 	}
 	
 	RecordAccessLibrary(RecordReader recordReader, RecordWriter recordWriter) {

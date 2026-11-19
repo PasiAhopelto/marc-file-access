@@ -5,15 +5,18 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import ppa.marc.RecordReader;
 import ppa.marc.common.UnimarcConstants;
 import ppa.marc.domain.Record;
 
+@Component("marcFileReader")
 public class UnimarcFileReader implements RecordReader {
 
-	private final RecordConverter recordConverter;
+	private final UnimarcRecordConverter recordConverter;
 
-	public UnimarcFileReader(RecordConverter recordConverter) {
+	public UnimarcFileReader(UnimarcRecordConverter recordConverter) {
 		this.recordConverter = recordConverter;
 	}
 

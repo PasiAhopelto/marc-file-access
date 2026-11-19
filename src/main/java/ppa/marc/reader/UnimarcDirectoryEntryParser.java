@@ -3,6 +3,9 @@ package ppa.marc.reader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class UnimarcDirectoryEntryParser implements DirectoryEntryParser {
 
 	private static final int DIRECTORY_ENTRY_LENGTH = 12;

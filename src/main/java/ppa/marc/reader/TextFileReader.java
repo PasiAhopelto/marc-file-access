@@ -7,15 +7,18 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import ppa.marc.RecordReader;
 import ppa.marc.domain.Record;
 
+@Component("textFileReader")
 public class TextFileReader implements RecordReader {
 
-	private final RecordConverter recordConverter;
+	private final TextRecordConverter recordConverter;
 	private final SpecialLineChecker commentLineChecker;
 
-	public TextFileReader(RecordConverter recordConverter, SpecialLineChecker commentLineChecker) {
+	public TextFileReader(TextRecordConverter recordConverter, SpecialLineChecker commentLineChecker) {
 		this.recordConverter = recordConverter;
 		this.commentLineChecker = commentLineChecker;
 	}

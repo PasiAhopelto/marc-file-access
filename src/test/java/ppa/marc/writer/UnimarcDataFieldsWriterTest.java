@@ -30,14 +30,12 @@ public class UnimarcDataFieldsWriterTest {
 	Field normalField = new Field(2, FIRST_INDICATOR, SECOND_INDICATOR);
 	
 	@BeforeEach
-	
 	protected void setUp() throws Exception {
 		controlField.getSubFields().add(new SubField(CONTROL_FIELD_VALUE));
 		normalField.getSubFields().add(new SubField(SUBFIELD_ID, NORMAL_FIELD_VALUE));
 	}
 	
 	@Test
-	
 	public void testGrantedThereAreNoFieldsThenThrowsIllegalArgumentException() throws Exception {
 		try {
 			writer.writeDataFields(outputStream, record);
@@ -48,7 +46,6 @@ public class UnimarcDataFieldsWriterTest {
 	}
 
 	@Test
-
 	public void testGrantedRecordHasControlFieldThenWritesItAndFieldTerminator() throws Exception {
 		record.getFields().add(controlField);
 		writer.writeDataFields(outputStream, record);
@@ -56,7 +53,6 @@ public class UnimarcDataFieldsWriterTest {
 	}
 	
 	@Test
-	
 	public void testGrantedRecordHasNormalFieldThenWritesItWithIndicatorsFollowedByFieldTerminator() throws Exception {
 		record.getFields().add(normalField);
 		writer.writeDataFields(outputStream, record);
@@ -64,7 +60,6 @@ public class UnimarcDataFieldsWriterTest {
 	}
 
 	@Test
-
 	public void testGrantedFieldHasTwoSubfieldsThenWritesBoth() throws Exception {
 		normalField.getSubFields().add(new SubField(SUBFIELD_ID, NORMAL_FIELD_VALUE));
 		record.getFields().add(normalField);
@@ -73,7 +68,6 @@ public class UnimarcDataFieldsWriterTest {
 	}
 
 	@Test
-
 	public void testGrantedRecordHasIdAndNormalFieldThenWritesBoth() throws Exception {
 		record.getFields().add(controlField);
 		record.getFields().add(normalField);

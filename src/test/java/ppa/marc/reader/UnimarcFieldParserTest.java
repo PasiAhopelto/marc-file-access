@@ -15,7 +15,6 @@ public class UnimarcFieldParserTest extends AbstractFieldParserTest {
 	}
 
 	@Test
-
 	public void testNormalSubFieldGetsParsed() throws Exception {
 		Field expectedField = new Field(10, '0', '1');
 		addExpectedSubField(new SubField('a', "data"), expectedField, "adata", false);
@@ -23,7 +22,6 @@ public class UnimarcFieldParserTest extends AbstractFieldParserTest {
 	}
 
 	@Test
-
 	public void testTwoSubFieldsGetParsed() throws Exception {
 		Field expectedField = new Field(10, '0', '1');
 		addExpectedSubField(new SubField('a', "data"), expectedField, "adata", false);

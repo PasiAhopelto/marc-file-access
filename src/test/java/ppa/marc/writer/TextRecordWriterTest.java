@@ -25,14 +25,12 @@ public class TextRecordWriterTest {
 	};
 	
 	@Test
-	
 	public void testGrantedThereAreNoRecordThenNothingIsWritten() throws Exception {
 		writer.writeRecords(outputStream, records);
 		assertEquals(0, outputStream.size());
 	}
 	
 	@Test
-	
 	public void testGrantedThereIsRecordThenItsTostringIsWrittenToOutputStream() throws Exception {
 		records.add(record);
 		writer.writeRecords(outputStream, records);
@@ -40,7 +38,6 @@ public class TextRecordWriterTest {
 	}
 
 	@Test
-
 	public void testGrantedThereAreTwoRecordsThenTheyAreSeparatedByNewline() throws Exception {
 		records.add(record);
 		records.add(record);
