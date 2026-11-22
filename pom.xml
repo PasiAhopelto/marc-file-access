@@ -34,7 +34,10 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
         <artifactId>maven-jar-plugin</artifactId>
         <configuration>
 	  <excludes>
+            <exclude>**/robot/</exclude>
             <exclude>**/robot/*</exclude>
+            <exclude>**/cli/</exclude>
+            <exclude>**/cli/*</exclude>
           </excludes>
         </configuration>
 	<version>3.5.1</version>
@@ -43,7 +46,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
         <configuration>
-          <excludePackageNames>ppa.marc.common:ppa.marc.reader:ppa.marc.writer:ppa.marc.robot</excludePackageNames>
+          <excludePackageNames>ppa.marc.common:ppa.marc.reader:ppa.marc.writer:ppa.marc.robot:ppa.marc.cli</excludePackageNames>
         </configuration>
 	<executions>
         <execution>
@@ -99,6 +102,24 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
           </descriptors>
         </configuration>
         <executions>
+          <execution>
+            <id>make-cli</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptorRefs combine.self="override"/>
+              <descriptors combine.self="override">
+                <descriptor>src/main/assembly/cli-assembly.xml</descriptor>
+              </descriptors>
+              <archive>
+                <manifest>
+                  <mainClass>ppa.marc.cli.MarcConverter</mainClass>
+                </manifest>
+              </archive>
+            </configuration>
+          </execution>
           <execution>
             <id>make-assembly</id> 
             <phase>package</phase> 

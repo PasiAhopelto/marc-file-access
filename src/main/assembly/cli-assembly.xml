@@ -1,0 +1,54 @@
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.2.0 https://maven.apache.org/xsd/assembly-2.2.0.xsd">
+  <!-- Executable command line utility: the library, the utility and their runtime dependencies. -->
+  <id>cli</id>
+  <formats>
+    <format>jar</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+  <containerDescriptorHandlers>
+    <!-- Several Spring jars contain these files; merge them instead of keeping only one. -->
+    <containerDescriptorHandler>
+      <handlerName>file-aggregator</handlerName>
+      <configuration>
+        <filePattern>META-INF/spring.handlers</filePattern>
+        <outputPath>META-INF/spring.handlers</outputPath>
+      </configuration>
+    </containerDescriptorHandler>
+    <containerDescriptorHandler>
+      <handlerName>file-aggregator</handlerName>
+      <configuration>
+        <filePattern>META-INF/spring.schemas</filePattern>
+        <outputPath>META-INF/spring.schemas</outputPath>
+      </configuration>
+    </containerDescriptorHandler>
+  </containerDescriptorHandlers>
+  <fileSets>
+    <fileSet>
+      <directory>${project.build.outputDirectory}</directory>
+      <outputDirectory>/</outputDirectory>
+      <excludes>
+        <exclude>ppa/marc/robot/**</exclude>
+      </excludes>
+    </fileSet>
+  </fileSets>
+  <dependencySets>
+    <dependencySet>
+      <outputDirectory>/</outputDirectory>
+      <useProjectArtifact>false</useProjectArtifact>
+      <unpack>true</unpack>
+      <scope>runtime</scope>
+      <unpackOptions>
+        <excludes>
+          <exclude>META-INF/spring.handlers</exclude>
+          <exclude>META-INF/spring.schemas</exclude>
+          <exclude>META-INF/*.SF</exclude>
+          <exclude>META-INF/*.DSA</exclude>
+          <exclude>META-INF/*.RSA</exclude>
+          <exclude>module-info.class</exclude>
+        </excludes>
+      </unpackOptions>
+    </dependencySet>
+  </dependencySets>
+</assembly>
