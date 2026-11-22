@@ -72,6 +72,19 @@ public class MarcConverterTest {
 	}
 
 	@Test
+	public void testConvertsMarcFileWithLineBreaksBetweenRecordsToText() throws Exception {
+		assertEquals(MarcConverter.EXIT_OK, run("to-text", TEST_DATA + "two_records_line_breaks.marc"));
+		assertEquals(Files.readString(Path.of(TEST_DATA + "two_records.marc.toString")), out.toString());
+	}
+
+	@Test
+	public void testGrantedMarcFileWithTruncatedLastRecordThenFails() throws Exception {
+		assertEquals(MarcConverter.EXIT_FAILURE, run("to-text", TEST_DATA + "two_records_truncated.marc"));
+		assertTrue(errBytes.toString().contains("is not a valid UNIMARC file: Record 2 is not terminated"));
+		assertEquals(0, out.size());
+	}
+
+	@Test
 	public void testPrintsUsageToStandardOutputWhenHelpIsRequested() throws Exception {
 		assertEquals(MarcConverter.EXIT_OK, run("--help"));
 		assertTrue(out.toString().startsWith("Usage:"));
@@ -113,9 +126,9 @@ public class MarcConverterTest {
 	}
 
 	@Test
-	public void testGrantedTextFileForMarcConversionThenFailsWithNoRecordsFound() throws Exception {
+	public void testGrantedTextFileForMarcConversionThenFailsWithUnterminatedRecord() throws Exception {
 		assertEquals(MarcConverter.EXIT_FAILURE, run("to-text", TEST_DATA + "record.marc.toString"));
-		assertTrue(errBytes.toString().contains("is not a valid UNIMARC file: no records found"));
+		assertTrue(errBytes.toString().contains("is not a valid UNIMARC file: Record 1 is not terminated"));
 		assertEquals(0, out.size());
 	}
 
