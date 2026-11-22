@@ -30,7 +30,12 @@ public class BaseFieldExtractor {
 		String id = matcher.group(1);
 		String indicators = matcher.group(2);
 		if(indicators == null) return new Field(Integer.parseInt(id));
-		return new Field(Integer.parseInt(id), indicators.charAt(1), indicators.charAt(2));
+		return new Field(Integer.parseInt(id), changeUnderscoreToSpace(indicators.charAt(1)), changeUnderscoreToSpace(indicators.charAt(2)));
+	}
+
+	/** Blank indicators are written as underscores in the text format, see {@link Field#toString()}. */
+	private char changeUnderscoreToSpace(char indicator) {
+		return indicator == '_' ? ' ' : indicator;
 	}
 
 }

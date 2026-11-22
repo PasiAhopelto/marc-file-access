@@ -14,7 +14,7 @@ public class BaseFieldExtractorTest {
 	private static final String FOUR_DIGIT_ID = "1234";
 
 	private static final Field ID_ONLY_FIELD = new Field(123);
-	private static final Object FIELD_WITH_INDICATORS = new Field(123, '_', '1');
+	private static final Object FIELD_WITH_INDICATORS = new Field(123, ' ', '1');
 	
 	BaseFieldExtractor extractor = new BaseFieldExtractor();
 	
