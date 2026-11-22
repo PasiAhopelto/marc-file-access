@@ -29,14 +29,17 @@ public class RecordToFieldsDivider {
 			fields.add(new StringBuffer(matcher.group()));
 		}
 		else {
-			appendIfSubfieldOfPreviousField(fields, line);
+			appendIfSubfieldOfPreviousField(recordAsString, fields, line);
 		}
 	}
 
-	private void appendIfSubfieldOfPreviousField(List<StringBuffer> fields, String line) {
+	private void appendIfSubfieldOfPreviousField(String recordAsString, List<StringBuffer> fields, String line) throws MarcFormatException {
 		Matcher continuedFieldMatcher = CONTINUES_FROM_PREVIOUS_LINE_FIELD_PATTERN.matcher(line);
 		if(continuedFieldMatcher.matches() && fields.size() > 0) {
 			fields.get(fields.size()-1).append("\n").append(line);
+		}
+		else if(!line.isBlank()) {
+			failWithMessage(recordAsString, "has line '" + line + "' that is neither a field nor a subfield of the previous field (subfield codes are ASCII letters or digits)");
 		}
 	}
 
