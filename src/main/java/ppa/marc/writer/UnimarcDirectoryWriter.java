@@ -25,14 +25,19 @@ public class UnimarcDirectoryWriter implements DirectoryWriter {
 		outputStream.write(new byte[] { UnimarcConstants.FIELD_TERMINATOR });
 	}
 
+	/** Length in bytes, as written by {@link UnimarcDataFieldsWriter}. */
 	private int calculateDataLength(Field field) {
 		int length = 1;  // Field terminator is included to length
-		if(field.getFirstIndicator() != Character.UNASSIGNED) ++length;
-		if(field.getSecondIndicator() != Character.UNASSIGNED) ++length;
+		if(field.getFirstIndicator() != Character.UNASSIGNED) length += encodedLength(field.getFirstIndicator());
+		if(field.getSecondIndicator() != Character.UNASSIGNED) length += encodedLength(field.getSecondIndicator());
 		for(SubField subField : field.getSubFields()) {
-			if(subField.getId() != Character.UNASSIGNED) length += 2;
-			length += subField.getValue().length();
+			if(subField.getId() != Character.UNASSIGNED) length += 1 + encodedLength(subField.getId());
+			length += subField.getValue().getBytes(UnimarcConstants.ENCODING).length;
 		}
 		return length;
+	}
+
+	private int encodedLength(char character) {
+		return String.valueOf(character).getBytes(UnimarcConstants.ENCODING).length;
 	}
 }

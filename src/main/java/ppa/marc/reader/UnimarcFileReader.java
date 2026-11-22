@@ -1,5 +1,6 @@
 package ppa.marc.reader;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -21,13 +22,13 @@ public class UnimarcFileReader implements RecordReader {
 
 	public List<Record> read(InputStream input) throws IOException {
 		List<Record> records = new ArrayList<Record>();
-		StringBuffer content = new StringBuffer();
-		int character;
-		while((character = input.read()) > -1) {
-			content.append((char) character);
-			if(character == UnimarcConstants.RECORD_TERMINATOR) {
-				records.add(recordConverter.convert(content.toString()));
-				content = new StringBuffer();
+		ByteArrayOutputStream content = new ByteArrayOutputStream();
+		int nextByte;
+		while((nextByte = input.read()) > -1) {
+			content.write(nextByte);
+			if(nextByte == UnimarcConstants.RECORD_TERMINATOR) {
+				records.add(recordConverter.convert(content.toString(UnimarcConstants.ENCODING)));
+				content.reset();
 			}
 		}
 		return records;

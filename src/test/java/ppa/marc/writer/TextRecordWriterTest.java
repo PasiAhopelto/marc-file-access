@@ -1,5 +1,6 @@
 package ppa.marc.writer;
 
+import java.nio.charset.StandardCharsets;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
@@ -44,5 +45,15 @@ public class TextRecordWriterTest {
 		writer.writeRecords(outputStream, records);
 		assertEquals(RECORD_AS_TEXT + "\n" + RECORD_AS_TEXT, outputStream.toString());
 	}
-	
+
+	@Test
+	public void testGrantedRecordHasNonAsciiCharactersThenWritesThemInUtf8() throws Exception {
+		records.add(new Record("Mäkinen €") {
+			public String toString() {
+				return getName();
+			}
+		});
+		writer.writeRecords(outputStream, records);
+		assertArrayEquals("Mäkinen €".getBytes(StandardCharsets.UTF_8), outputStream.toByteArray());
+	}
 }

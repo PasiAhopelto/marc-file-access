@@ -60,6 +60,18 @@ public class MarcConverterTest {
 	}
 
 	@Test
+	public void testConvertsUtf8MarcFileToText() throws Exception {
+		assertEquals(MarcConverter.EXIT_OK, run("to-text", TEST_DATA + "utf8_record.marc"));
+		assertArrayEquals(Files.readAllBytes(Path.of(TEST_DATA + "utf8_record.marc.toString")), out.toByteArray());
+	}
+
+	@Test
+	public void testConvertsUtf8TextFileToMarc() throws Exception {
+		assertEquals(MarcConverter.EXIT_OK, run("to-marc", TEST_DATA + "utf8_record.marc.toString"));
+		assertArrayEquals(Files.readAllBytes(Path.of(TEST_DATA + "utf8_record.marc")), out.toByteArray());
+	}
+
+	@Test
 	public void testPrintsUsageToStandardOutputWhenHelpIsRequested() throws Exception {
 		assertEquals(MarcConverter.EXIT_OK, run("--help"));
 		assertTrue(out.toString().startsWith("Usage:"));

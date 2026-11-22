@@ -76,7 +76,7 @@ public class UnimarcRecordWriterTest {
 	}
 
 	private String defaultLeader() {
-		return String.format("%05dnam  22%05d   4500", RECORD_LENGTH, BASE_ADDRESS);
+		return String.format("%05dnam a22%05d   4500", RECORD_LENGTH, BASE_ADDRESS);
 	}
 
 	private void replayMocks() {

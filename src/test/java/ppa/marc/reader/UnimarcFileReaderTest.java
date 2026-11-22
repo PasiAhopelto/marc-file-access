@@ -1,5 +1,6 @@
 package ppa.marc.reader;
 
+import java.nio.charset.StandardCharsets;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
@@ -49,4 +50,12 @@ public class UnimarcFileReaderTest {
 		replay(recordConverter);
 	}
 
+	@Test
+	public void testDecodesRecordAsUtf8() throws Exception {
+		String recordAsString = "Mäkinen €🎉" + UnimarcConstants.RECORD_TERMINATOR;
+		expect(recordConverter.convert(recordAsString)).andReturn(records[0]);
+		replay(recordConverter);
+		assertEquals(List.of(records[0]), fileReader.read(new ByteArrayInputStream(recordAsString.getBytes(StandardCharsets.UTF_8))));
+		verify(recordConverter);
+	}
 }

@@ -14,6 +14,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import ppa.marc.MarcFileAccessConfiguration;
 import ppa.marc.RecordReader;
 import ppa.marc.RecordWriter;
+import ppa.marc.common.UnimarcConstants;
 import ppa.marc.domain.Record;
 
 public class RecordAccessLibrary {
@@ -33,9 +34,9 @@ public class RecordAccessLibrary {
 	}
 
 	public String readRecord(String filename) throws IOException {
-		OutputStream outputStream = new ByteArrayOutputStream();
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		recordWriter.writeRecords(outputStream, recordReader.read(openInputFile(filename)));
-		return outputStream.toString();
+		return outputStream.toString(UnimarcConstants.ENCODING);
 	}
 	
 	OutputStream getOutputStream() throws FileNotFoundException {

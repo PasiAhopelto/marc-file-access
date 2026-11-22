@@ -16,6 +16,8 @@ import ppa.marc.domain.Record;
  * </pre>
  * Alternatively textual MARC record writer can be instantiated by using "textFileWriter" as bean's name.
  * Note that the textual format is not from a MARC standard.
+ * Both formats are written as UTF-8; directory entries and the record leader
+ * give lengths in bytes.
  * The XML context file ppa.marc.RecordWriter.xml is still provided for
  * XML-based application contexts.
  * @see ppa.marc.domain

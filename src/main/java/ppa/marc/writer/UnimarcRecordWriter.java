@@ -20,8 +20,11 @@ public class UnimarcRecordWriter implements RecordWriter {
 
 	static final int LEADER_LENGTH = 24;
 	static final int MAXIMUM_RECORD_LENGTH = 99999;
-	/** Leader used when the record has no 24 character label, for example when it was read from text. */
-	static final String DEFAULT_LEADER = "00000nam  2200000   4500";
+	/**
+	 * Leader used when the record has no 24 character label, for example when it was read from text.
+	 * Position 9 is 'a': the record is encoded in UTF-8.
+	 */
+	static final String DEFAULT_LEADER = "00000nam a2200000   4500";
 	private static final int RECORD_LENGTH_POSITION = 0;
 	private static final int BASE_ADDRESS_POSITION = 12;
 

@@ -1,5 +1,6 @@
 package ppa.marc.writer;
 
+import java.nio.charset.StandardCharsets;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -74,5 +75,13 @@ public class UnimarcDataFieldsWriterTest {
 		writer.writeDataFields(outputStream, record);
 		assertEquals(CONTROL_FIELD_VALUE + UnimarcConstants.FIELD_TERMINATOR + FIRST_INDICATOR + SECOND_INDICATOR + EXPECTED_SUBFIELD + UnimarcConstants.FIELD_TERMINATOR, outputStream.toString());
 	}
-	
+
+	@Test
+	public void testGrantedValueHasNonAsciiCharactersThenWritesThemInUtf8() throws Exception {
+		Field field = new Field(245, FIRST_INDICATOR, SECOND_INDICATOR);
+		field.getSubFields().add(new SubField(SUBFIELD_ID, "Mäkinen €"));
+		record.getFields().add(field);
+		writer.writeDataFields(outputStream, record);
+		assertArrayEquals(("" + FIRST_INDICATOR + SECOND_INDICATOR + UnimarcConstants.SUBFIELD_DELIMITER + SUBFIELD_ID + "Mäkinen €" + UnimarcConstants.FIELD_TERMINATOR).getBytes(StandardCharsets.UTF_8), outputStream.toByteArray());
+	}
 }
