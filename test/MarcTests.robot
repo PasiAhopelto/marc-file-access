@@ -7,6 +7,7 @@ ${testDataDirectory}	test/data
 ${record}	${testDataDirectory}/record.marc
 ${twoRecords}	${testDataDirectory}/two_records.marc
 ${utf8Record}	${testDataDirectory}/utf8_record.marc
+${twoRecordsWithLineBreaks}	${testDataDirectory}/two_records_line_breaks.marc
 
 *Test case*	*Value*	*Value*
 Writes idential MARC record compared to what was read	[Tags]	regression
@@ -26,6 +27,11 @@ Writes identical UTF-8 MARC record compared to what was read	[Tags]	regression
 
 Prints out UTF-8 MARC record with complete information	[Tags]	regression
 	Assert that toString prints complete information	${utf8Record}
+
+Writes two MARC records without the line breaks that were between them	[Tags]	regression
+	${expectedOutput}=	Get file	${twoRecords}
+	${actualOutput}=	Read record	${twoRecordsWithLineBreaks}
+	Should be equal	${expectedOutput}	${actualOutput}
 
 *Keyword*	*Action*	*Argument*	*Argument*
 Assert that writes identical record compares to what was read	[Arguments]	${filename}

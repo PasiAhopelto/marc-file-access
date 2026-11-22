@@ -37,6 +37,30 @@ public class UnimarcFileReaderTest {
 		assertTwoRecords(recordsAsStrings);
 	}
 
+	@Test
+	public void testSkipsLineBreaksBetweenRecords() throws Exception {
+		expectTwoRecords();
+		List<Record> recordsAsStrings = fileReader.read(new ByteArrayInputStream(new byte[] { '\n', 'a', UnimarcConstants.RECORD_TERMINATOR, '\r', '\n', 'b', UnimarcConstants.RECORD_TERMINATOR, '\n' }));
+		assertTwoRecords(recordsAsStrings);
+	}
+
+	@Test
+	public void testKeepsLineBreaksInsideRecord() throws Exception {
+		expect(recordConverter.convert("a\nb" + UnimarcConstants.RECORD_TERMINATOR)).andReturn(records[0]);
+		replay(recordConverter);
+		assertEquals(List.of(records[0]), fileReader.read(new ByteArrayInputStream(("a\nb" + UnimarcConstants.RECORD_TERMINATOR).getBytes(StandardCharsets.UTF_8))));
+		verify(recordConverter);
+	}
+
+	@Test
+	public void testGrantedLastRecordIsNotTerminatedThenThrowsException() throws Exception {
+		expect(recordConverter.convert("a" + UnimarcConstants.RECORD_TERMINATOR)).andReturn(records[0]);
+		replay(recordConverter);
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> fileReader.read(new ByteArrayInputStream(new byte[] { 'a', UnimarcConstants.RECORD_TERMINATOR, 'b', 'c' })));
+		assertEquals("Record 2 is not terminated: 2 bytes after the last complete record.", exception.getMessage());
+		verify(recordConverter);
+	}
+
 	private void assertTwoRecords(List<Record> recordsAsStrings) {
 		assertEquals(2, recordsAsStrings.size());
 		assertEquals(records[0], recordsAsStrings.get(0));
