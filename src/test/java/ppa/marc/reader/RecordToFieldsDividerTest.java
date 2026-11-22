@@ -91,6 +91,21 @@ public class RecordToFieldsDividerTest {
 		assertEquals(expectedFields, divider.divideToFields(DATA_FIELD + "\n" + CONTROL_FIELD + "\n" + DATA_FIELD_WITHOUT_VALUE));
 	}
 	
+	@Test
+	public void testGrantedLineIsNotFieldOrSubfieldThenThrowsException() throws Exception {
+		assertFailsWithInput(DATA_FIELD + "\nnot a field", "has line 'not a field' that is neither a field nor a subfield of the previous field (subfield codes are ASCII letters or digits).");
+	}
+
+	@Test
+	public void testGrantedSubfieldCodeIsNotAsciiThenThrowsException() throws Exception {
+		assertFailsWithInput(DATA_FIELD + "\n       |\u00e4 value", "has line '       |\u00e4 value' that is neither a field nor a subfield of the previous field (subfield codes are ASCII letters or digits).");
+	}
+
+	@Test
+	public void testGrantedSubfieldLineHasNoPreviousFieldThenThrowsException() throws Exception {
+		assertFailsWithInput("       |a value", "has line '       |a value' that is neither a field nor a subfield of the previous field (subfield codes are ASCII letters or digits).");
+	}
+
 	private void assertFailsWithInput(String input, String message) {
 		try {
 			divider.divideToFields(input);

@@ -16,6 +16,7 @@ import ppa.marc.domain.Record;
  * </pre>
  * Alternatively textual MARC record reader can be instantiated by using "textFileReader" as bean's name.
  * Note that the textual format is not from a MARC standard.
+ * Both formats are read as UTF-8.
  * The XML context file ppa.marc.RecordReader.xml is still provided for
  * XML-based application contexts.
  * @see ppa.marc.domain

@@ -6,6 +6,7 @@ Library	ppa.marc.robot.RecordAccessLibrary	marcFileReader	marcFileWriter
 ${testDataDirectory}	test/data
 ${record}	${testDataDirectory}/record.marc
 ${twoRecords}	${testDataDirectory}/two_records.marc
+${utf8Record}	${testDataDirectory}/utf8_record.marc
 
 *Test case*	*Value*	*Value*
 Writes idential MARC record compared to what was read	[Tags]	regression
@@ -15,10 +16,16 @@ Writes two idential MARC records compared to what was read	[Tags]	regression
 	Assert that writes identical record compares to what was read	${twoRecords}
 
 Prints out MARC record with complete information	[Tags]	regression
-	Assert that toString prints complete information	${twoRecords}
+	Assert that toString prints complete information	${record}
 
 Prints out two MARC records with complete information	[Tags]	regression
 	Assert that toString prints complete information	${twoRecords}
+
+Writes identical UTF-8 MARC record compared to what was read	[Tags]	regression
+	Assert that writes identical record compares to what was read	${utf8Record}
+
+Prints out UTF-8 MARC record with complete information	[Tags]	regression
+	Assert that toString prints complete information	${utf8Record}
 
 *Keyword*	*Action*	*Argument*	*Argument*
 Assert that writes identical record compares to what was read	[Arguments]	${filename}

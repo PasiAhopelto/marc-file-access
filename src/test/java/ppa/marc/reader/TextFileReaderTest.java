@@ -1,5 +1,6 @@
 package ppa.marc.reader;
 
+import java.nio.charset.StandardCharsets;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -121,5 +122,14 @@ public class TextFileReaderTest {
 		replayMocks();
 		assertEquals(expectedRecords, reader.read(inputStream));
 	}
-	
+
+	@Test
+	public void testDecodesInputAsUtf8() throws Exception {
+		String line = "245.10 |a Mäkinen €🎉";
+		expect(specialLineChecker.isRecordSeparator(line)).andReturn(false);
+		expect(specialLineChecker.isCommentLine(line)).andReturn(false);
+		expect(recordConverter.convert(line)).andReturn(RECORD);
+		replayMocks();
+		assertEquals(List.of(RECORD), reader.read(new ByteArrayInputStream(line.getBytes(StandardCharsets.UTF_8))));
+	}
 }

@@ -19,7 +19,7 @@ public class UnimarcDataFieldsWriter implements DataFieldsWriter {
 			writeIndicators(outputStream, field);
 			for(SubField subField : field.getSubFields()) {
 				writeSubFieldId(outputStream, subField);
-				outputStream.write(subField.getValue().getBytes());
+				outputStream.write(subField.getValue().getBytes(UnimarcConstants.ENCODING));
 			}
 			outputStream.write(UnimarcConstants.FIELD_TERMINATOR);
 		}
@@ -28,15 +28,19 @@ public class UnimarcDataFieldsWriter implements DataFieldsWriter {
 	private void writeSubFieldId(OutputStream outputStream, SubField subField) throws IOException {
 		if(subField.getId() != Character.UNASSIGNED) {
 			outputStream.write(UnimarcConstants.SUBFIELD_DELIMITER);
-			outputStream.write(subField.getId());
+			outputStream.write(encode(subField.getId()));
 		}
 	}
 
 	private void writeIndicators(OutputStream outputStream, Field field) throws IOException {
 		if(!field.isControlField()) {
-			outputStream.write(field.getFirstIndicator());
-			outputStream.write(field.getSecondIndicator());
+			outputStream.write(encode(field.getFirstIndicator()));
+			outputStream.write(encode(field.getSecondIndicator()));
 		}
+	}
+
+	private byte[] encode(char character) {
+		return String.valueOf(character).getBytes(UnimarcConstants.ENCODING);
 	}
 
 }

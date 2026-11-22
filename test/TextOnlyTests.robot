@@ -6,6 +6,7 @@ Library	ppa.marc.robot.RecordAccessLibrary	textFileReader	textFileWriter
 ${testDataDirectory}	test/data
 ${record}	${testDataDirectory}/record.marc
 ${two_records}	${testDataDirectory}/two_records.marc
+${utf8_record}	${testDataDirectory}/utf8_record.marc
 
 *Test case*	*Value*	*Value*
 Writes what was read as text as a text record	
@@ -15,6 +16,10 @@ Writes what was read as text as a text record
 Writes two identical text records when compared to what was read as text record
 	[Tags]	regression
 	Assert that writes identical record compared to what was read	${two_records}
+
+Writes identical UTF-8 text record when compared to what was read as text record
+	[Tags]	regression
+	Assert that writes identical record compared to what was read	${utf8_record}
 
 *Keyword*	*Action*	*Argument*	*Argument*
 Assert that writes identical record compared to what was read	[Arguments]	${filename}

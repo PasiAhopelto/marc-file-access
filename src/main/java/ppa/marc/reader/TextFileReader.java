@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import ppa.marc.RecordReader;
+import ppa.marc.common.UnimarcConstants;
 import ppa.marc.domain.Record;
 
 @Component("textFileReader")
@@ -22,7 +23,7 @@ public class TextFileReader implements RecordReader {
 	private final SpecialLineChecker commentLineChecker;
 
 	public List<Record> read(InputStream inputStream) throws IOException {
-		return convertInputToRecords(new BufferedReader(new InputStreamReader(inputStream)));
+		return convertInputToRecords(new BufferedReader(new InputStreamReader(inputStream, UnimarcConstants.ENCODING)));
 	}
 
 	private List<Record> convertInputToRecords(BufferedReader reader) throws IOException {

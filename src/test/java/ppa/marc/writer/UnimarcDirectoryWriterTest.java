@@ -125,5 +125,14 @@ public class UnimarcDirectoryWriterTest {
 			otherField.getSubFields().add(subField);
 		}
 	}
-	
+
+	@Test
+	public void testGrantedDataHasMultiByteCharactersThenLengthIsInBytes() throws Exception {
+		record.getFields().clear();
+		Field nonAsciiField = new Field(245, '1', '0');
+		nonAsciiField.getSubFields().add(new SubField('a', "ä€🎉"));  // 2 + 3 + 4 bytes in UTF-8
+		record.getFields().add(nonAsciiField);
+		directoryWriter.writeDirectoryEntries(outputStream, record);
+		assertEquals("245001400000" + UnimarcConstants.FIELD_TERMINATOR, outputStream.toString());  // indicators 2 + subfield id 2 + 9 + terminator 1
+	}
 }
